@@ -6,61 +6,67 @@
 /*   By: dboire <dboire@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/14 18:46:35 by dboire            #+#    #+#             */
-/*   Updated: 2024/06/14 18:46:35 by dboire           ###   ########.fr       */
+/*   Updated: 2024/06/16 09:28:33 by dboire           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Contact.hpp"
 #include "Phonebook.hpp"
 #include <iostream>
+#include <cstdlib>
 
 int	only_isspace(std::string in)
 {
-	for(int i = 0; i = in.length(); i++)
+	for(size_t i = 0; i == in.length(); i++)
 	{
-		if(!std::isspace(in[i]))
+		if(std::isspace(in[i]))
 			return (0);
 	}
 	return (1);
 }
 
-void	Add_info(std::string in, Phonebook contact_list)
+void	Phonebook::Add_info(std::string in, int i)
 {
 	while(1)
 	{
 		std::cout << "FIRST NAME > ";
-		std::getline(std::cin, in);
-		if(in.empty() || only_isspace(in) == 1)
-		{
+		if (!std::getline(std::cin, in))
+ 			exit(1);
+		if(in.empty())
 			std::cout << "No empty informations" << std::endl;
-		}
 		else
 			break ;
 	}
-	contact_list.contact.takeFirstName(in);
-	std::cout << contact_list.contact.printFirstName() << std::endl;
+	_contact[i].setFirstName(in);
+	std::cout << _contact[i].getFirstName() << std::endl;
 	std::cout << "LAST NAME > ";
 	std::getline(std::cin, in);
-	contact_list.contact.takeLastName(in);
-	std::cout << contact_list.contact.printLastName() << std::endl;
+	_contact[i].setLastName(in);
+	std::cout << _contact[i].getLastName() << std::endl;
 	std::cout << "NICKNAME > ";
 	std::getline(std::cin, in);
-	contact_list.contact.takeNickname(in);
-	std::cout << contact_list.contact.printNickname() << std::endl;
+	_contact[i].setNickname(in);
+	std::cout << _contact[i].getNickname() << std::endl;
 	std::cout << "PHONE NUMBER > ";
 	std::getline(std::cin, in);
-	contact_list.contact.takePhoneNumber(in);
-	std::cout << contact_list.contact.printPhoneNumber() << std::endl;
+	_contact[i].setPhoneNumber(in);
+	std::cout << _contact[i].getPhoneNumber() << std::endl;
 	std::cout << "DARKEST SECRET > ";
 	std::getline(std::cin, in);
-	contact_list.contact.takeDarkestSecret(in);
-	std::cout << contact_list.contact.printDarkestSecret() << std::endl;
+	_contact[i].setDarkestSecret(in);
+	std::cout << _contact[i].getDarkestSecret() << std::endl;
+	std::cout << i << std::endl;
+}
+
+void	Phonebook::Search(void)
+{
+	
 }
 
 int main( ){
 	
 	int i = 0;
-	Phonebook contact_list[8];
+	Phonebook contact_list;
 	std::string in;
 
 	while(1)
@@ -72,7 +78,7 @@ int main( ){
 		{
 			if (i == 8)
 				i = 0;
-			Add_info(in, contact_list[i]);	
+			contact_list.Add_info(in, i);
 			i++;
 		}
 		if (in == "SEARCH")

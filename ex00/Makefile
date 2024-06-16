@@ -14,17 +14,19 @@ NAME = megaphone
 
 SRC = ex00.cpp\
 
-CFLAGS = -Wall -Wextra -Werror -std=c++98
+CXX = c++
+
+CXXFLAGS = -Wall -Wextra -Werror -g -std=c++98
 
 RM	=	rm -f
 
 OBJS = ${SRC:.cpp=.o}
 
 %.o: %.c
-	c++ ${CFLAGS} -c $< -o $@
+	$(CXX) ${CXXFLAGS} -c $< -o $@
 
 ${NAME} :	${OBJS}
-		c++ ${CFLAGS} ${OBJS} -o ${NAME}
+		$(CXX) ${CXXFLAGS} ${OBJS} -o ${NAME}
 
 clean:
 	${RM} ${OBJS}

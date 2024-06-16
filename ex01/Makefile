@@ -6,7 +6,7 @@
 #    By: dboire <dboire@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/14 14:11:47 by dboire            #+#    #+#              #
-#    Updated: 2024/06/14 14:11:47 by dboire           ###   ########.fr        #
+#    Updated: 2024/06/16 09:04:28 by dboire           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,17 +16,19 @@ SRC = main.cpp\
 		Contact.cpp\
 		Phonebook.cpp\
 
-CFLAGS = -Wall -Wextra -Werror -std=c++98
+CXX = c++
+
+CXXFLAGS = -Wall -Wextra -Werror -g -std=c++98
 
 RM	=	rm -f
 
 OBJS = ${SRC:.cpp=.o}
 
 %.o: %.c
-	c++ ${CFLAGS} -c $< -o $@
+	$(CXX) ${CXXFLAGS} -c $< -o $@
 
 ${NAME} :	${OBJS}
-		c++ ${CFLAGS} ${OBJS} -o ${NAME}
+		$(CXX) ${CXXFLAGS} ${OBJS} -o ${NAME}
 
 clean:
 	${RM} ${OBJS}
