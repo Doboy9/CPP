@@ -6,13 +6,14 @@
 /*   By: dboire <dboire@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/14 21:44:41 by dboire            #+#    #+#             */
-/*   Updated: 2024/06/16 16:30:53 by dboire           ###   ########.fr       */
+/*   Updated: 2024/06/16 17:42:14 by dboire           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Phonebook.hpp"
 #include <iostream>
 #include <cstdlib>
+#include <iomanip>
 
 void	Phonebook::Add_info(std::string in, int i)
 {
@@ -105,11 +106,11 @@ void	Phonebook::Search(void)
 	bool loop = true;
 	
 	std::cout << std::string(46, '*') << std::endl;
-	std::cout << "*" << std::string(5, ' ') << "Index|" << "First Name|" << " Last Name|" << "   Nickname*" << std::endl;
+	std::cout << "*" << std::setw(11) << "Index|" << "First Name|" << " Last Name|" << "   Nickname*" << std::endl;
 	std::cout << std::string(46, '*') << std::endl;
 	for(int i = 0; i < 8; i++)
 	{
-		std::cout << "*" << std::string(9, ' ') << i + 1 << "|";
+		std::cout << "*" << std::setw(10) << i + 1 << "|";
 		if(_contact[i].getFirstName().length() > 10)
 			std::cout << _contact[i].getFirstName().substr(0, 9) << ".|";
 		else
