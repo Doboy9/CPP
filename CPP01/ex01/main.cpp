@@ -6,7 +6,7 @@
 /*   By: dboire <dboire@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/17 08:55:58 by dboire            #+#    #+#             */
-/*   Updated: 2024/06/17 12:22:37 by dboire           ###   ########.fr       */
+/*   Updated: 2024/06/17 13:01:56 by dboire           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@ int main ()
 {
 	int n = 5;
 
+	if (n <= 0)
+		return (1);
 	Zombie *horde = zombieHorde(n, "HORDE1");
 	
 	delete[] horde;

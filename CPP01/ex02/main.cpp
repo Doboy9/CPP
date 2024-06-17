@@ -5,19 +5,26 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: dboire <dboire@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/17 08:55:58 by dboire            #+#    #+#             */
-/*   Updated: 2024/06/17 13:11:33 by dboire           ###   ########.fr       */
+/*   Created: 2024/06/17 12:45:48 by dboire            #+#    #+#             */
+/*   Updated: 2024/06/17 13:16:44 by dboire           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Zombie.hpp"
+#include <iostream>
 
-int main ()
+int	main()
 {
-	Zombie stack_z("FOO");
-	Zombie *heap_z = newZombie("HEAP");
+	std::string string = "HI THIS IS BRAIN";
 	
-	randomChump("RANDOL");
-	delete heap_z;
-	return(0);
+	std::string *stringPTR = &string;
+	std::string &stringREF = string;
+	
+	std::cout << "Memory address of string : " << &string << std::endl
+	<< "Value of the string : " << string << std::endl;
+	
+	std::cout << "Memory address of string : " << stringPTR << std::endl
+	<< "Value of the string : " << *stringPTR << std::endl;
+	
+	std::cout << "Memory address of string : " << &stringREF << std::endl
+	<< "Value of the string : " << stringREF << std::endl;
 }
