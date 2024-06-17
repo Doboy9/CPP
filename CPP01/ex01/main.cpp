@@ -6,7 +6,7 @@
 /*   By: dboire <dboire@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/17 08:55:58 by dboire            #+#    #+#             */
-/*   Updated: 2024/06/17 08:55:58 by dboire           ###   ########.fr       */
+/*   Updated: 2024/06/17 12:22:37 by dboire           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,10 @@
 
 int main ()
 {
-	Zombie stack_z("FOO");
-	Zombie *heap_z = newZombie("HEAP");
+	int n = 5;
+
+	Zombie *horde = zombieHorde(n, "HORDE1");
 	
-	randomChump("RANDOL");
-	delete heap_z;
+	delete[] horde;
 	return(0);
 }

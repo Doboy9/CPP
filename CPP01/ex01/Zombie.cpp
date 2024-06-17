@@ -6,7 +6,7 @@
 /*   By: dboire <dboire@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/17 09:36:30 by dboire            #+#    #+#             */
-/*   Updated: 2024/06/17 09:36:30 by dboire           ###   ########.fr       */
+/*   Updated: 2024/06/17 12:22:26 by dboire           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,11 @@ void Zombie::announce(void)
 	std::cout << _name << ": BraiiiiiiinnnzzzZ..." << std::endl;
 }
 
-Zombie::Zombie(std::string name)
+void Zombie::Naming(std::string name)
 {
 	_name = name;
-	announce();
 }
+Zombie::Zombie(){};
 
 Zombie::~Zombie()
 {

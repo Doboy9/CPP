@@ -6,17 +6,15 @@
 #    By: dboire <dboire@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/14 14:11:47 by dboire            #+#    #+#              #
-#    Updated: 2024/06/17 11:00:59 by dboire           ###   ########.fr        #
+#    Updated: 2024/06/17 12:21:38 by dboire           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = zombie
 
 SRC = 	main.cpp \
-		newZombie.cpp \
-		randomChump.cpp \
-		Zombie.cpp
-		
+		Zombie.cpp \
+		zombieHorde.cpp
 
 CXX = c++
 
