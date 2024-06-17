@@ -6,7 +6,7 @@
 /*   By: dboire <dboire@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/14 21:44:41 by dboire            #+#    #+#             */
-/*   Updated: 2024/06/16 17:42:14 by dboire           ###   ########.fr       */
+/*   Updated: 2024/06/17 13:25:47 by dboire           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,9 @@
 #include <iostream>
 #include <cstdlib>
 #include <iomanip>
+
+Phonebook::Phonebook(){};
+Phonebook::~Phonebook(){};
 
 void	Phonebook::Add_info(std::string in, int i)
 {

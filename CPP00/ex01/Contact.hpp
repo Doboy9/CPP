@@ -6,7 +6,7 @@
 /*   By: dboire <dboire@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/16 08:14:36 by dboire            #+#    #+#             */
-/*   Updated: 2024/06/16 14:07:23 by dboire           ###   ########.fr       */
+/*   Updated: 2024/06/17 13:30:37 by dboire           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,8 @@ private :
 
 public :
 
-	Contact(){};
-	~Contact(){};
+	Contact();
+	~Contact();
 
 void setFirstName(std::string str);
 void setLastName(std::string str);

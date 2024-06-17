@@ -6,13 +6,15 @@
 /*   By: dboire <dboire@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/14 18:45:20 by dboire            #+#    #+#             */
-/*   Updated: 2024/06/16 16:25:14 by dboire           ###   ########.fr       */
+/*   Updated: 2024/06/17 13:30:17 by dboire           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <iostream>
 #include "Contact.hpp"
 
+Contact::Contact(){};
+Contact::~Contact(){};
 void Contact::setFirstName(std::string str){_first_name = str;}
 void Contact::setLastName(std::string str){_last_name = str;}
 void Contact::setNickname(std::string str){_nickname = str;}
