@@ -19,14 +19,15 @@ class Weapon
 {
 
 private:
-	std::string type;
+	std::string _type;
 
 public:
 
-	Weapon();
+	Weapon(std::string str);
 	~Weapon();
 
-
+	void getType(std::string str);
+	void setType(std::string str);
 
 };
 
