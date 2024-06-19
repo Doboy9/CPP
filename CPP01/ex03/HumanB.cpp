@@ -29,7 +29,6 @@ void HumanB::setWeapon(Weapon &weapon)
 void HumanB::attack()
 {
 	std::cout << _name
-	<< " attacks with their "
-	//<< getType()
-	;
+	<< " attacks with their " 
+	<<  _weapon->getType() << std::endl;
 }
