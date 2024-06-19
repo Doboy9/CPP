@@ -14,13 +14,13 @@
 
 Weapon::Weapon(std::string str)
 {
-	getType(str);
-}
-
-
-void Weapon::getType(std::string str)
-{
 	_type = str;
+};
+
+
+const std::string &Weapon::getType()
+{
+	return(_type);
 }
 
 void Weapon::setType(std::string str)

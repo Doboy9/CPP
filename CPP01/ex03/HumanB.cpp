@@ -20,9 +20,9 @@ HumanB::HumanB(std::string name)
 
 HumanB::~HumanB(){};
 
-void HumanB::setweapon(Weapon weapon)
+void HumanB::setWeapon(Weapon &weapon)
 {
-	weapon._type = weapon;
+	_weapon = &weapon;
 }
 
 
@@ -31,5 +31,5 @@ void HumanB::attack()
 	std::cout << _name
 	<< " attacks with their "
 	//<< getType()
-	;ddffdffeerdfdfsavcsdfd
+	;
 }

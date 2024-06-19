@@ -10,14 +10,11 @@
 #                                                                              #
 # **************************************************************************** #
 
-NAME = brain
+NAME = assault
 
 SRC =	main.cpp\
-		Weapon.hpp\
 		Weapon.cpp\
-		HumanA.hpp\
 		HumanA.cpp\
-		HumanB.hpp\
 		HumanB.cpp\
 
 CXX = c++

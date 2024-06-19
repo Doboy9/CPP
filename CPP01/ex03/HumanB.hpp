@@ -13,6 +13,7 @@
 #ifndef HUMANB_H
 # define HUMANB_H
 
+#include "Weapon.hpp"
 #include <string>
 #include <iostream>
 
@@ -29,7 +30,8 @@ public:
 	~HumanB();
 	
 	void attack();
-	void setweapon(Weapon weapon);
+	void setWeapon(Weapon &weapon);
+	
 };
 
 

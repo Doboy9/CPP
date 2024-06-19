@@ -13,6 +13,7 @@
 #ifndef HUMANA_H
 # define HUMANA_H
 
+#include "Weapon.hpp"
 #include <string>
 #include <iostream>
 
@@ -21,11 +22,11 @@ class HumanA
 
 private:
 	std::string _name;
-	Weapon *weapon;
+	Weapon &_weapon;
 
 public:
 
-	HumanA(std::string name, Weapon type);
+	HumanA(std::string name, Weapon &type);
 	~HumanA();
 	
 	void attack();
