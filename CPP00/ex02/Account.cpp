@@ -6,7 +6,7 @@
 /*   By: dboire <dboire@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/16 16:34:20 by dboire            #+#    #+#             */
-/*   Updated: 2024/06/16 22:03:01 by dboire           ###   ########.fr       */
+/*   Updated: 2024/06/28 16:41:36 by dboire           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,10 @@ void	Account::_displayTimestamp( void )
 }
 Account::Account(int initial_deposit)
 {
+	_accountIndex = 0;
+	_amount = 0;
+	_nbDeposits = 0;
+	_nbWithdrawals = 0;
 	_amount = initial_deposit;
 	_totalAmount += _amount;
 	_accountIndex = _nbAccounts;
