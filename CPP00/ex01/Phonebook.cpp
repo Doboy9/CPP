@@ -6,7 +6,7 @@
 /*   By: dboire <dboire@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/14 21:44:41 by dboire            #+#    #+#             */
-/*   Updated: 2024/06/17 13:25:47 by dboire           ###   ########.fr       */
+/*   Updated: 2024/06/29 18:24:32 by dboire           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	Phonebook::Add_info(std::string in, int i)
 	{
 		std::cout << "FIRST NAME > ";
 		if (!std::getline(std::cin, in))
- 			exit(1);
+ 			return ;
 		if(in.empty())
 			std::cout << "No empty informations" << std::endl;
 		else
@@ -36,7 +36,7 @@ void	Phonebook::Add_info(std::string in, int i)
 	{
 		std::cout << "LAST NAME > ";
 		if (!std::getline(std::cin, in))
- 			exit(1);
+ 			return ;
 		if(in.empty())
 			std::cout << "No empty informations" << std::endl;
 		else
@@ -47,7 +47,7 @@ void	Phonebook::Add_info(std::string in, int i)
 	{
 		std::cout << "NICKNAME > ";
 		if (!std::getline(std::cin, in))
- 			exit(1);
+ 			return ;
 		if(in.empty())
 			std::cout << "No empty informations" << std::endl;
 		else
@@ -58,7 +58,7 @@ void	Phonebook::Add_info(std::string in, int i)
 	{
 		std::cout << "PHONE NUMBER > ";
 		if (!std::getline(std::cin, in))
- 			exit(1);
+ 			return ;
 		if(in.empty())
 			std::cout << "No empty informations" << std::endl;
 		else
@@ -80,7 +80,7 @@ void	Phonebook::Add_info(std::string in, int i)
 	{
 		std::cout << "DARKEST SECRET > ";
 		if (!std::getline(std::cin, in))
- 			exit(1);
+ 			return ;
 		if(in.empty())
 			std::cout << "No empty informations" << std::endl;
 		else
@@ -108,6 +108,7 @@ void	Phonebook::Search(void)
 	std::string in;
 	bool loop = true;
 	
+	in = "";
 	std::cout << std::string(46, '*') << std::endl;
 	std::cout << "*" << std::setw(11) << "Index|" << "First Name|" << " Last Name|" << "   Nickname*" << std::endl;
 	std::cout << std::string(46, '*') << std::endl;
@@ -133,7 +134,7 @@ void	Phonebook::Search(void)
 	{
 		if (!std::getline(std::cin, in))
 			exit(1);
-		if (in[1] || in[0] == '0' || in[0] == '9' || isdigit(in[0]) == 0)
+		if (in.empty() || in[1] || in[0] == '0' || in[0] == '9' || isdigit(in[0]) == 0)
 			std::cout << "Please type a number between 1 and 8" << std::endl <<"Which contact would you want to see the informations ? " << std::endl;
 		if (in[0] && !in[1])
 		{

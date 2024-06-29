@@ -6,7 +6,7 @@
 /*   By: dboire <dboire@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/14 18:46:35 by dboire            #+#    #+#             */
-/*   Updated: 2024/06/16 17:42:22 by dboire           ###   ########.fr       */
+/*   Updated: 2024/06/29 18:20:54 by dboire           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ int main(){
 	{
 		std::cout << "Phonebook > ";
 		if (!std::getline(std::cin, in))
- 		   exit(1);
+ 		   return(1);
 		if (in == "ADD")
 		{
 			if (i == 8)

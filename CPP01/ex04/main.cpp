@@ -6,7 +6,7 @@
 /*   By: dboire <dboire@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 14:54:11 by dboire            #+#    #+#             */
-/*   Updated: 2024/06/28 17:27:03 by dboire           ###   ########.fr       */
+/*   Updated: 2024/06/29 17:43:31 by dboire           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,9 +32,10 @@ int main (int ac, char **av)
 		while(std::getline(infile, line))
 		{
 			str += line;
-			str += "\n";
 			line = "";
 		}
+		if(str.find(av[2] != std::string::npos))
+			
 		std::cout << str << std::endl;
 		infile.close();
 	}
