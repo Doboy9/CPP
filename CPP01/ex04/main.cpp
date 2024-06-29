@@ -15,6 +15,8 @@
 int main (int ac, char **av)
 {
 	(void)av;
+	std::string str;
+	
 	if(ac != 4)
 		std::cout << "Please enter a filename and two strings" << std::endl;
 	else
@@ -29,10 +31,11 @@ int main (int ac, char **av)
 		std::string line;
 		while(std::getline(infile, line))
 		{
-			if(line.find(av[2]) != std::string::npos)
-				std::cout << "found" << std::endl;
-			std::cout << line << std::endl;
+			str += line;
+			str += "\n";
+			line = "";
 		}
+		std::cout << str << std::endl;
 		infile.close();
 	}
 	return (0);
