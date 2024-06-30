@@ -6,19 +6,17 @@
 /*   By: dboire <dboire@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/17 08:55:58 by dboire            #+#    #+#             */
-/*   Updated: 2024/06/17 13:01:56 by dboire           ###   ########.fr       */
+/*   Updated: 2024/06/30 14:16:03 by dboire           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Zombie.hpp"
+#include <limits.h>
 
 int main ()
 {
-	int n = 5;
 
-	if (n <= 0)
-		return (1);
-	Zombie *horde = zombieHorde(n, "HORDE1");
+	Zombie *horde = zombieHorde(5, "HORDE1");
 	
 	delete[] horde;
 	return(0);

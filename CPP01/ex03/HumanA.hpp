@@ -6,7 +6,7 @@
 /*   By: dboire <dboire@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/17 15:19:19 by dboire            #+#    #+#             */
-/*   Updated: 2024/06/19 13:36:10 by dboire           ###   ########.fr       */
+/*   Updated: 2024/06/30 14:02:28 by dboire           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,6 @@ private:
 	Weapon &_weapon;
 
 public:
-
 	HumanA(std::string name, Weapon &type);
 	~HumanA();
 	

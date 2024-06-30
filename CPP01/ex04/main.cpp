@@ -6,7 +6,7 @@
 /*   By: dboire <dboire@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 14:54:11 by dboire            #+#    #+#             */
-/*   Updated: 2024/06/29 17:43:31 by dboire           ###   ########.fr       */
+/*   Updated: 2024/06/30 14:18:58 by dboire           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,9 @@ int main (int ac, char **av)
 	std::size_t found;
 	std::string str;
 	std::string arg1 = av[2];
+	std::string arg2 = av[3];
 	
-	if(ac != 4)
+	if(ac != 4 || arg2.empty())
 		std::cout << "Please enter a filename and two strings" << std::endl;
 	else
 	{
@@ -36,6 +37,7 @@ int main (int ac, char **av)
 		while(std::getline(infile, line))
 		{
 			str += line;
+			str += "\n";
 			line = "";
 		}
 		

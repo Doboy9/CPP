@@ -5,14 +5,15 @@
 #                                                     +:+ +:+         +:+      #
 #    By: dboire <dboire@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2024/06/28 15:02:06 by dboire            #+#    #+#              #
-#    Updated: 2024/06/30 14:18:56 by dboire           ###   ########.fr        #
+#    Created: 2024/06/30 14:22:26 by dboire            #+#    #+#              #
+#    Updated: 2024/06/30 14:22:41 by dboire           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = sed
+NAME = Harl
 
 SRC =	main.cpp\
+		Harl.cpp
 
 CXX = c++
 
