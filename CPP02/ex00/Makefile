@@ -6,11 +6,11 @@
 #    By: dboire <dboire@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/07/03 14:37:36 by dboire            #+#    #+#              #
-#    Updated: 2024/07/03 14:37:55 by dboire           ###   ########.fr        #
+#    Updated: 2024/07/03 16:32:14 by dboire           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = megaphone
+NAME = canon
 
 SRC = Fixed.cpp\
 		main.cpp
