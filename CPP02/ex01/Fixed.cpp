@@ -6,7 +6,7 @@
 /*   By: dboire <dboire@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/03 14:37:20 by dboire            #+#    #+#             */
-/*   Updated: 2024/07/03 17:46:23 by dboire           ###   ########.fr       */
+/*   Updated: 2024/07/03 17:46:38 by dboire           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,18 @@
 Fixed::Fixed():_stock(0)
 {
     std::cout << "Default constructor called" << std::endl;
+}
+
+Fixed::Fixed(const int num)
+{
+    std::cout << "Int constructor called" << std::endl;
+    _stock = num << _Bits;
+}
+
+Fixed::Fixed(const float num)
+{
+    std::cout << "Int constructor called" << std::endl;
+    _stock = num << _Bits;
 }
 
 Fixed::~Fixed()
