@@ -6,7 +6,7 @@
 /*   By: dboire <dboire@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 14:54:11 by dboire            #+#    #+#             */
-/*   Updated: 2024/07/03 15:37:00 by dboire           ###   ########.fr       */
+/*   Updated: 2024/07/07 17:04:51 by dboire           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int main (int ac, char **av)
 	std::string arg1 = av[2];
 	std::string arg2 = av[3];
 	
-	if(ac != 4 || arg2.empty() || arg1.empty())
+	if(ac != 4 || arg1.empty())
 		std::cout << "Please enter a filename and two strings" << std::endl;
 	else
 	{
