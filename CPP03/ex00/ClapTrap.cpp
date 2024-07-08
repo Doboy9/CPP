@@ -6,9 +6,19 @@
 /*   By: dboire <dboire@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/08 09:44:41 by dboire            #+#    #+#             */
-/*   Updated: 2024/07/08 10:27:15 by dboire           ###   ########.fr       */
+/*   Updated: 2024/07/08 14:44:39 by dboire           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ClapTrap.hpp"
+
+ClapTrap::ClapTrap() : _hit_points(10), _energy_points(10), _attack_damage(0)
+{
+   std::cout << "ClapTrap is created" << std::endl;
+}
+
+ClapTrap::~ClapTrap()
+{
+	std::cout << "ClapTrap is destroyed" << std::endl;
+}
 
