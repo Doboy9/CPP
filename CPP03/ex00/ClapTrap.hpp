@@ -6,7 +6,7 @@
 /*   By: dboire <dboire@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/08 09:44:43 by dboire            #+#    #+#             */
-/*   Updated: 2024/07/09 13:09:00 by dboire           ###   ########.fr       */
+/*   Updated: 2024/07/09 18:17:18 by dboire           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,12 +26,23 @@ private:
 
 
 public:
-    ClapTrap();
-    ~ClapTrap();
+	ClapTrap();
+	ClapTrap(std::string &name);
+	~ClapTrap();
 
-    void    attack(const std::string& target);
-    void    takeDamage(unsigned int amount);
-    void    beRepaired(unsigned int amount);
+	std::string		get_name();
+	int				get_hit_points();
+	unsigned int	get_energy_points();
+	unsigned int	get_attack_damage();
+	void			set_hit_points(int value);
+	void			set_energy_points(int value);
+	void			set_attack_damage(int value);
+
+
+	void	attack(const std::string &target);
+	void	takeDamage(unsigned int amount);
+	void	beRepaired(unsigned int amount);
+    
 };
 
 #endif
