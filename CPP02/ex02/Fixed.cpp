@@ -6,69 +6,70 @@
 /*   By: dboire <dboire@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/03 14:37:20 by dboire            #+#    #+#             */
-/*   Updated: 2024/07/07 16:31:00 by dboire           ###   ########.fr       */
+/*   Updated: 2024/07/09 15:42:58 by dboire           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Fixed.hpp"
 
-Fixed::Fixed():_stock(0)
-{
-    std::cout << "Default constructor called" << std::endl;
-}
+Fixed::Fixed():_stock(0){};
 
-Fixed::~Fixed()
-{
-    std::cout << "Destructor called" << std::endl;
-}
+Fixed::~Fixed(){};
 
 Fixed::Fixed(const Fixed &other)
 {
-    std::cout << "Copy constructor called" << std::endl;
-    this->setRawBits(other.getRawBits());
+	this->_stock = other._stock;
 }
 
 Fixed Fixed::operator=(const Fixed &other)
 {
-    std::cout << "Copy assignment operator called" << std::endl;
-    if(this != &other)
-    {
-        setRawBits(other.getRawBits());
-    }
-    return (*this);
+	if(this != &other)
+	{
+		this->setRawBits(other.getRawBits());
+	}
+	return (*this);
 }
 
-int     Fixed::getRawBits(void)const
+int	Fixed::getRawBits(void)const
 {
-    std::cout << "getRawBits member function called" << std::endl;
-    return _stock;
+	return (_stock);
 }
 
-void    Fixed::setRawBits(int const raw)
+void	Fixed::setRawBits(int raw)
 {
-    _stock = raw;
+	_stock = raw;
+}
+
+Fixed::Fixed(const int num)
+{
+	_stock = num << _Bits;
+}
+
+Fixed::Fixed(const float num)
+{
+	_stock = static_cast<int>(num * (1 << _Bits));
 }
 
 float   Fixed::toFloat() const
 {
-    return static_cast<float>(_stock) / (1 << _Bits);
+	return (static_cast<float>(_stock) / (1 << _Bits));
 }
 
 int   Fixed::toInt() const
 {
-    return (_stock >> _Bits);
+	return (_stock >> _Bits);
 }
 
 std::ostream &operator<<(std::ostream &out, Fixed const &value)
 {
-    out << value.toFloat();
-    return(out);
+	out << value.toFloat();
+	return(out);
 }
 
 bool    Fixed::operator>(const Fixed &other) const
 {
-    if(this->_stock > other.getRawBits())
-        return (true);
+	if(this->_stock > other.getRawBits())
+	    return (true);
     return (false);
 }
 
@@ -157,28 +158,28 @@ Fixed   Fixed::operator--(int)
     return (before);
 }
 
-Fixed const	&Fixed::min(Fixed const &a, Fixed const &b)
+Fixed Fixed::min(const Fixed &a, const Fixed &b)
 {
     if(a.getRawBits() < b.getRawBits())
         return (a);
     return (b);
 }
 
-Fixed const	&Fixed::max(Fixed const &a, Fixed const &b)
+Fixed Fixed::max(const Fixed &a, const Fixed &b)
 {
     if(a.getRawBits() > b.getRawBits())
         return (a);
     return (b);
 }
 
-Fixed const	&Fixed::min(Fixed &a, Fixed &b)
+Fixed Fixed::min(Fixed &a, Fixed &b)
 {
     if(a.getRawBits() < b.getRawBits())
         return (a);
     return (b);
 }
 
-Fixed const	&Fixed::max(Fixed &a, Fixed &b)
+Fixed Fixed::max(Fixed &a, Fixed &b)
 {
     if(a.getRawBits() > b.getRawBits())
         return (a);

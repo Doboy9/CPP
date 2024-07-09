@@ -6,7 +6,7 @@
 /*   By: dboire <dboire@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/03 14:37:20 by dboire            #+#    #+#             */
-/*   Updated: 2024/07/06 22:24:53 by dboire           ###   ########.fr       */
+/*   Updated: 2024/07/09 15:40:19 by dboire           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ Fixed::~Fixed()
 Fixed::Fixed(const Fixed &other)
 {
     std::cout << "Copy constructor called" << std::endl;
-    *this = other;
+    this->_stock = other._stock;
 }
 
 Fixed &Fixed::operator=(const Fixed &other)
@@ -40,7 +40,7 @@ Fixed &Fixed::operator=(const Fixed &other)
 
 int     Fixed::getRawBits(void)const
 {
-    return _stock;
+    return (_stock);
 }
 
 void    Fixed::setRawBits(int const raw)
@@ -62,7 +62,7 @@ Fixed::Fixed(const float num)
 
 float   Fixed::toFloat() const
 {
-    return static_cast<float>(_stock) / (1 << _Bits);
+    return (static_cast<float>(_stock) / (1 << _Bits));
 }
 
 int   Fixed::toInt() const
