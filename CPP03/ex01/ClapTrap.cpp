@@ -6,7 +6,7 @@
 /*   By: dboire <dboire@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/08 09:44:41 by dboire            #+#    #+#             */
-/*   Updated: 2024/07/10 08:44:44 by dboire           ###   ########.fr       */
+/*   Updated: 2024/07/10 10:54:30 by dboire           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,28 +14,28 @@
 
 ClapTrap::ClapTrap(){};
 
-ClapTrap::ClapTrap(std::string &name) : _hit_points(10), _energy_points(10), _attack_damage(0)
+ClapTrap::ClapTrap(std::string const &name) : _hit_points(10), _energy_points(10), _attack_damage(0)
 {
 	this->_name = name; 
-	std::cout << "ClapTrap is created" << std::endl;
+	std::cout << this->get_name() << " is created in the ClapTrap constructor" << std::endl;
 }
 
 ClapTrap::~ClapTrap()
 {
-	std::cout << "ClapTrap is destroyed" << std::endl;
+	std::cout << this->get_name() << " is destroyed" << std::endl;
 }
 
 void ClapTrap::attack(const std::string &target)
 {
-	std::cout << "HP : " << get_hit_points() << std::endl;
+	std::cout << "ClapTrap " << this->get_name() << " HP : " << get_hit_points() << std::endl;
 	if (this->get_hit_points() <= 0)
 	{
-		std::cout << "ClapTrap is dead !" << std::endl;
+		std::cout << this->get_name() << " is dead !" << std::endl;
 		return ;
 	}
 	if (this->get_energy_points() <= 0)
 	{
-		std::cout << "ClapTrap is out of energy !" << std::endl;
+		std::cout << this->get_name() << " is out of energy !" << std::endl;
 		return ;
 	}
 	std::cout << "ClapTrap " << this->_name << " attack " << target << " causing " << this->get_attack_damage() << " points of damage"  << std::endl;
@@ -45,19 +45,19 @@ void ClapTrap::attack(const std::string &target)
 void	ClapTrap::takeDamage(unsigned int amount)
 {
 	this->set_hit_points(amount * -1);
-	std::cout << "Took damage : " << amount << std::endl;
+	std::cout << this->get_name() << " Took damage : " << amount << std::endl;
 }
 
 void	ClapTrap::beRepaired(unsigned int amount)
 {
 	if (this->get_hit_points() <= 0)
 	{
-		std::cout << "ClapTrap is dead !" << std::endl;
+		std::cout << this->get_name() << " is dead !" << std::endl;
 		return ;
 	}
 	if (this->get_energy_points() <= 0)
 	{
-		std::cout << "ClapTrap is out of energy !" << std::endl;
+		std::cout << this->get_name() << " is out of energy !" << std::endl;
 		return ;
 	}
 	std::cout << "Repairing " << amount << std::endl;
