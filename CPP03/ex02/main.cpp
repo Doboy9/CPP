@@ -6,7 +6,7 @@
 /*   By: dboire <dboire@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/08 09:44:45 by dboire            #+#    #+#             */
-/*   Updated: 2024/07/10 11:26:11 by dboire           ###   ########.fr       */
+/*   Updated: 2024/07/10 15:47:09 by dboire           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,9 @@ int main ()
 	ClapTrap claptrap("Clap");
 	ScavTrap scavtrap("ScaTra");
 	FragTrap fragtrap("Fragtra");
-	
-	
-	scavtrap.guardgate();
+
+	scavtrap.get_hp();
+	scavtrap.guardGate();
 	scavtrap.get_energy_points();
 	scavtrap.attack("someone");
 	scavtrap.takeDamage(60);

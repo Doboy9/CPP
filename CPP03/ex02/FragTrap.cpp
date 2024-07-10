@@ -6,7 +6,7 @@
 /*   By: dboire <dboire@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 10:56:47 by dboire            #+#    #+#             */
-/*   Updated: 2024/07/10 11:26:00 by dboire           ###   ########.fr       */
+/*   Updated: 2024/07/10 15:42:27 by dboire           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,26 @@ FragTrap::FragTrap(std::string const &name) : ClapTrap(name)
 	set_energy_points(90);
 	set_attack_damage(30);
 	std::cout << name << " is created in the FragTrap constructor" << std::endl;
+}
+
+FragTrap::FragTrap(const FragTrap &other) : ClapTrap()
+{
+	this->_name = other._name;
+	this->_hit_points = other._hit_points;
+	this->_energy_points = other._energy_points;
+	this->_attack_damage = other._attack_damage;
+}
+
+FragTrap FragTrap::operator=(const FragTrap &other)
+{
+	if(this != &other)
+	{
+		this->_name = other._name;
+		this->_hit_points = other._hit_points;
+		this->_energy_points = other._energy_points;
+		this->_attack_damage = other._attack_damage;
+	}
+	return (*this);
 }
 
 void FragTrap::attack(const std::string &target)

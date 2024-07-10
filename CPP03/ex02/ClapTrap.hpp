@@ -6,7 +6,7 @@
 /*   By: dboire <dboire@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/08 09:44:43 by dboire            #+#    #+#             */
-/*   Updated: 2024/07/10 09:23:14 by dboire           ###   ########.fr       */
+/*   Updated: 2024/07/10 15:34:48 by dboire           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 class ClapTrap
 {
 
-private:
+protected:
 	std::string _name;
 	int 		_hit_points;
 	int 		_energy_points;
@@ -28,6 +28,8 @@ private:
 public:
 	ClapTrap();
 	ClapTrap(std::string const &name);
+	ClapTrap(const ClapTrap &other);
+	ClapTrap	operator=(const ClapTrap &other);
 	virtual ~ClapTrap();
 
 	std::string		get_name();

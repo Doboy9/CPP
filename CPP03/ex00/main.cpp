@@ -6,7 +6,7 @@
 /*   By: dboire <dboire@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/08 09:44:45 by dboire            #+#    #+#             */
-/*   Updated: 2024/07/10 08:45:51 by dboire           ###   ########.fr       */
+/*   Updated: 2024/07/10 15:15:08 by dboire           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,11 @@
 
 int main ()
 {
-	std::string str = "1";
-
-	ClapTrap claptrap(str);
+	ClapTrap claptrap("Premier");
+	ClapTrap claptrap1(claptrap);
 	
+	claptrap1.get_hit_points();
+	claptrap1.get_name();
 	claptrap.attack("someone");
 	claptrap.beRepaired(10);
 	claptrap.takeDamage(15);

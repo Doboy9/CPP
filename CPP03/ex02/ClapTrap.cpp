@@ -6,7 +6,7 @@
 /*   By: dboire <dboire@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/08 09:44:41 by dboire            #+#    #+#             */
-/*   Updated: 2024/07/10 11:22:57 by dboire           ###   ########.fr       */
+/*   Updated: 2024/07/10 15:47:15 by dboire           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,26 @@ ClapTrap::ClapTrap(std::string const &name) : _hit_points(10), _energy_points(10
 ClapTrap::~ClapTrap()
 {
 	std::cout << this->get_name() << " is destroyed in ClapTrap destructor" << std::endl;
+}
+
+ClapTrap::ClapTrap(const ClapTrap &other)
+{
+	this->_name = other._name;
+	this->_hit_points = other._hit_points;
+	this->_energy_points = other._energy_points;
+	this->_attack_damage = other._attack_damage;
+}
+
+ClapTrap ClapTrap::operator=(const ClapTrap &other)
+{
+	if(this != &other)
+	{
+		this->_name = other._name;
+		this->_hit_points = other._hit_points;
+		this->_energy_points = other._energy_points;
+		this->_attack_damage = other._attack_damage;
+	}
+	return (*this);
 }
 
 void ClapTrap::attack(const std::string &target)

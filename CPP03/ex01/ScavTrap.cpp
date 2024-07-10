@@ -6,7 +6,7 @@
 /*   By: dboire <dboire@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 08:47:25 by dboire            #+#    #+#             */
-/*   Updated: 2024/07/10 10:53:13 by dboire           ###   ########.fr       */
+/*   Updated: 2024/07/10 15:40:20 by dboire           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,27 @@ ScavTrap::ScavTrap(std::string const &name) : ClapTrap(name)
 	std::cout << name << " is created in the ScavTrap constructor" << std::endl;
 }
 
-void	ScavTrap::guardgate()
+ScavTrap::ScavTrap(const ScavTrap &other)
+{
+	this->_name = other._name;
+	this->_hit_points = other._hit_points;
+	this->_energy_points = other._energy_points;
+	this->_attack_damage = other._attack_damage;
+}
+
+ScavTrap ScavTrap::operator=(const ScavTrap &other)
+{
+	if(this != &other)
+	{
+		this->_name = other._name;
+		this->_hit_points = other._hit_points;
+		this->_energy_points = other._energy_points;
+		this->_attack_damage = other._attack_damage;
+	}
+	return (*this);
+}
+
+void	ScavTrap::guardGate()
 {
 	std::cout << this->get_name() << " is now in gatekeeper mode" << std::endl;
 }

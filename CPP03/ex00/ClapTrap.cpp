@@ -6,7 +6,7 @@
 /*   By: dboire <dboire@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/08 09:44:41 by dboire            #+#    #+#             */
-/*   Updated: 2024/07/10 08:44:44 by dboire           ###   ########.fr       */
+/*   Updated: 2024/07/10 15:14:53 by dboire           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 ClapTrap::ClapTrap(){};
 
-ClapTrap::ClapTrap(std::string &name) : _hit_points(10), _energy_points(10), _attack_damage(0)
+ClapTrap::ClapTrap(const std::string &name) : _hit_points(10), _energy_points(10), _attack_damage(0)
 {
 	this->_name = name; 
 	std::cout << "ClapTrap is created" << std::endl;
@@ -24,6 +24,29 @@ ClapTrap::~ClapTrap()
 {
 	std::cout << "ClapTrap is destroyed" << std::endl;
 }
+
+ClapTrap::ClapTrap(const ClapTrap &other)
+{
+	this->_name = other._name;
+	this->_hit_points = other._hit_points;
+	this->_energy_points = other._energy_points;
+	this->_attack_damage = other._attack_damage;
+	std::cout << "ClapTrap copy constructor created" << std::endl;
+}
+
+ClapTrap ClapTrap::operator=(const ClapTrap &other)
+{
+	if(this != &other)
+	{
+		this->_name = other._name;
+		this->_hit_points = other._hit_points;
+		this->_energy_points = other._energy_points;
+		this->_attack_damage = other._attack_damage;
+	}
+	return (*this);
+}
+
+
 
 void ClapTrap::attack(const std::string &target)
 {
@@ -68,6 +91,7 @@ void	ClapTrap::beRepaired(unsigned int amount)
 
 std::string ClapTrap::get_name()
 {
+	std::cout << "Name : " << this->_name << std::endl;
 	return (this->_name);
 }
 

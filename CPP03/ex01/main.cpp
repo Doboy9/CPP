@@ -6,7 +6,7 @@
 /*   By: dboire <dboire@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/08 09:44:45 by dboire            #+#    #+#             */
-/*   Updated: 2024/07/10 10:13:37 by dboire           ###   ########.fr       */
+/*   Updated: 2024/07/10 15:35:19 by dboire           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,11 @@
 int main ()
 {
 	ClapTrap claptrap("Clap");
+	ClapTrap claptrap1(claptrap);
 	ScavTrap scavtrap("ScaTra");
 	
-	
-	scavtrap.guardgate();
+
+	scavtrap.guardGate();
 	scavtrap.attack("someone");
 	scavtrap.takeDamage(60);
 	scavtrap.beRepaired(60);

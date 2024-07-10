@@ -6,7 +6,7 @@
 /*   By: dboire <dboire@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 08:47:27 by dboire            #+#    #+#             */
-/*   Updated: 2024/07/10 10:07:22 by dboire           ###   ########.fr       */
+/*   Updated: 2024/07/10 15:40:00 by dboire           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,11 @@ public :
 
 	ScavTrap();
 	ScavTrap(std::string const &name);
+	ScavTrap(const ScavTrap &other);
+	ScavTrap	operator=(const ScavTrap &other);
 	~ScavTrap();
 
-	void	guardgate();
+	void	guardGate();
 	void	attack(const std::string &target);
 
 };
