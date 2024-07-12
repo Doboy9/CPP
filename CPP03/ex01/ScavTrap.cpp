@@ -6,7 +6,7 @@
 /*   By: dboire <dboire@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 08:47:25 by dboire            #+#    #+#             */
-/*   Updated: 2024/07/10 15:40:20 by dboire           ###   ########.fr       */
+/*   Updated: 2024/07/12 14:39:45 by dboire           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,13 +24,13 @@ ScavTrap::~ScavTrap()
 
 ScavTrap::ScavTrap(std::string const &name) : ClapTrap(name)
 {
-	set_hit_points(90);
-	set_energy_points(45);
+	set_hit_points(100);
+	set_energy_points(50);
 	set_attack_damage(20);
 	std::cout << name << " is created in the ScavTrap constructor" << std::endl;
 }
 
-ScavTrap::ScavTrap(const ScavTrap &other)
+ScavTrap::ScavTrap(const ScavTrap &other) : ClapTrap()
 {
 	this->_name = other._name;
 	this->_hit_points = other._hit_points;

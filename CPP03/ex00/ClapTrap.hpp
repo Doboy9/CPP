@@ -6,7 +6,7 @@
 /*   By: dboire <dboire@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/08 09:44:43 by dboire            #+#    #+#             */
-/*   Updated: 2024/07/10 15:47:31 by dboire           ###   ########.fr       */
+/*   Updated: 2024/07/12 14:01:04 by dboire           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,8 @@ public:
 	void			set_hit_points(int value);
 	void			set_energy_points(int value);
 	void			set_attack_damage(int value);
+	void			change_hit_points(int value);
+	void			change_energy_points(int value);
 
 
 	void	attack(const std::string &target);

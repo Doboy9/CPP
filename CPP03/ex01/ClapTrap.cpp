@@ -6,7 +6,7 @@
 /*   By: dboire <dboire@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/08 09:44:41 by dboire            #+#    #+#             */
-/*   Updated: 2024/07/10 15:10:19 by dboire           ###   ########.fr       */
+/*   Updated: 2024/07/12 14:39:19 by dboire           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,12 +59,12 @@ void ClapTrap::attack(const std::string &target)
 		return ;
 	}
 	std::cout << "ClapTrap " << this->_name << " attack " << target << " causing " << this->get_attack_damage() << " points of damage"  << std::endl;
-	this->set_energy_points(1);
+	this->change_energy_points(-1);
 }
 
 void	ClapTrap::takeDamage(unsigned int amount)
 {
-	this->set_hit_points(amount * -1);
+	this->change_hit_points(-amount);
 	std::cout << this->get_name() << " Took damage : " << amount << std::endl;
 }
 
@@ -81,9 +81,9 @@ void	ClapTrap::beRepaired(unsigned int amount)
 		return ;
 	}
 	std::cout << "Repairing " << amount << std::endl;
-	this->set_hit_points(amount);
+	this->change_hit_points(amount);
 	std::cout << "Regenerating life to : " << this->_hit_points << std::endl;
-	this->set_energy_points(1);
+	this->change_energy_points(-1);
 }
 
 std::string ClapTrap::get_name()
@@ -91,7 +91,7 @@ std::string ClapTrap::get_name()
 	return (this->_name);
 }
 
-// Hit_points Getter/Setter
+// Hit_points Getter/Setter/Modifier
 
 int ClapTrap::get_hit_points()
 {
@@ -100,10 +100,15 @@ int ClapTrap::get_hit_points()
 
 void ClapTrap::set_hit_points(int value)
 {
-	this->_hit_points = this->get_hit_points() + value;
+	this->_hit_points = value;
 }
 
-// Energy_points Getter/Setter
+void ClapTrap::change_hit_points(int value)
+{
+	this->set_hit_points(this->get_hit_points() + value);
+}
+
+// Energy_points Getter/Setter/Modifier
 
 unsigned int ClapTrap::get_energy_points()
 {
@@ -112,8 +117,13 @@ unsigned int ClapTrap::get_energy_points()
 
 void ClapTrap::set_energy_points(int value)
 {
-	this->_energy_points = this->_energy_points - value;
+	this->_energy_points = value;
 	
+}
+
+void	ClapTrap::change_energy_points(int value)
+{
+	this->set_energy_points(this->get_energy_points() + value);
 }
 
 // Attack_damage Getter/Setter

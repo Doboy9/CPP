@@ -6,7 +6,7 @@
 /*   By: dboire <dboire@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 13:45:26 by dboire            #+#    #+#             */
-/*   Updated: 2024/07/11 17:19:11 by dboire           ###   ########.fr       */
+/*   Updated: 2024/07/11 19:02:17 by dboire           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 Animal::Animal()
 {
+	new Brain();
 	std::cout << "Default constructor of animal" << std::endl;
 }
 

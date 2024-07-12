@@ -6,7 +6,7 @@
 /*   By: dboire <dboire@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 13:45:23 by dboire            #+#    #+#             */
-/*   Updated: 2024/07/11 17:15:22 by dboire           ###   ########.fr       */
+/*   Updated: 2024/07/11 19:03:21 by dboire           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ public :
 class Dog : public Animal
 {
 private: 
+	Brain *brain;
 
 public:
 	Dog();
@@ -52,6 +53,7 @@ public:
 class Cat : public Animal
 {
 private: 
+	Brain *brain;
 
 public:
 	Cat();
@@ -95,6 +97,17 @@ public:
 	~WrongCat();
 	
 	void makeSound() const;
+};
+
+//Brain class
+
+class Brain
+{
+private:
+	std::string ideas[100];
+
+public:
+
 };
 
 #endif
