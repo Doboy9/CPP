@@ -6,7 +6,7 @@
 /*   By: dboire <dboire@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 13:45:26 by dboire            #+#    #+#             */
-/*   Updated: 2024/07/11 19:02:17 by dboire           ###   ########.fr       */
+/*   Updated: 2024/07/13 13:58:22 by dboire           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 Animal::Animal()
 {
-	new Brain();
 	std::cout << "Default constructor of animal" << std::endl;
 }
 
@@ -57,11 +56,13 @@ void Animal::makeSound() const
 
 Cat::Cat() : Animal("Cat")
 {
+	this->brain = new Brain();
 	std::cout << "Default constructor of Cat" << std::endl;
 }
 
 Cat::~Cat()
 {
+	delete this->brain;
 	std::cout << "Default destructor of Cat" << std::endl;
 }
 
@@ -89,10 +90,16 @@ void Cat::makeSound() const
 	std::cout << "Cat is meowing" << std::endl;
 }
 
+Brain Cat::*get_brain const()
+{
+	return(this->brain);
+}
+
 // Dog
 
 Dog::Dog() : Animal("Dog")
 {
+	this->brain = new Brain();
 	std::cout << "Default constructor of Dog" << std::endl;
 }
 
@@ -118,7 +125,13 @@ Dog Dog::operator=(const Dog &other)
 
 Dog::~Dog()
 {
+	delete this->brain;
 	std::cout << "Default destructor of Dog" << std::endl;
+}
+
+Brain Dog::*get_brain const()
+{
+	return(this->brain);
 }
 
 void Dog::makeSound() const
@@ -202,4 +215,28 @@ WrongCat WrongCat::operator=(const WrongCat &other)
 void WrongCat::makeSound() const
 {
 	std::cout << "WrongCat is talking in human language" << std::endl;
+}
+
+// Brain
+
+Brain::Brain() : ideas()
+{
+	std::cout << "Default constructor of Brain" << std::endl;
+}
+
+Brain::~Brain()
+{
+	std::cout << "Default destructor of Brain" << std::endl;
+}
+
+Brain::Brain(const Brain &other)
+{
+	*this = other;
+}
+
+Brain Brain::operator=(const Brain &other)
+{
+	for(int i = 0; i < 100; i++)
+		this->ideas[i] = other.ideas[i];
+	return (*this);
 }

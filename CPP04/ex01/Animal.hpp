@@ -6,7 +6,7 @@
 /*   By: dboire <dboire@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 13:45:23 by dboire            #+#    #+#             */
-/*   Updated: 2024/07/11 19:03:21 by dboire           ###   ########.fr       */
+/*   Updated: 2024/07/13 13:51:40 by dboire           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,21 @@ public :
 	std::string getType() const;
 };
 
+//Brain class
+
+class Brain
+{
+private:
+
+public:
+	Brain();
+	Brain(const Brain &other);
+	Brain	operator=(const Brain &other);
+	~Brain();
+	
+	std::string ideas[100];
+};
+
 // Dog class
 
 class Dog : public Animal
@@ -45,6 +60,7 @@ public:
 	Dog	operator=(const Dog &other);
 	~Dog();
 	
+	Brain *get_brain const();
 	void makeSound() const;
 };
 
@@ -61,7 +77,8 @@ public:
 	Cat(const Cat &other);
 	Cat	operator=(const Cat &other);
 	~Cat();
-	
+
+	Brain *get_brain const();
 	void makeSound() const;
 };
 
@@ -97,17 +114,6 @@ public:
 	~WrongCat();
 	
 	void makeSound() const;
-};
-
-//Brain class
-
-class Brain
-{
-private:
-	std::string ideas[100];
-
-public:
-
 };
 
 #endif
