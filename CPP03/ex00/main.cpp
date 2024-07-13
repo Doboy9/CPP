@@ -6,7 +6,7 @@
 /*   By: dboire <dboire@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/08 09:44:45 by dboire            #+#    #+#             */
-/*   Updated: 2024/07/12 14:42:35 by dboire           ###   ########.fr       */
+/*   Updated: 2024/07/13 14:31:51 by dboire           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 int main ()
 {
 	ClapTrap claptrap("Premier");
-	ClapTrap claptrap1(claptrap);
+	ClapTrap claptrap1;
 	
 	claptrap1.takeDamage(100);
 	claptrap.attack("someone");

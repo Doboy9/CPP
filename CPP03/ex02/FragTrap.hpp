@@ -6,7 +6,7 @@
 /*   By: dboire <dboire@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 10:58:45 by dboire            #+#    #+#             */
-/*   Updated: 2024/07/10 15:41:24 by dboire           ###   ########.fr       */
+/*   Updated: 2024/07/13 14:32:32 by dboire           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,11 @@
 class FragTrap : public ClapTrap
 {
 private :
+	FragTrap();
 
 
 public :
 
-	FragTrap();
 	FragTrap(std::string const &name);
 	FragTrap(const FragTrap &other);
 	FragTrap	operator=(const FragTrap &other);

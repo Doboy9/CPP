@@ -6,7 +6,7 @@
 /*   By: dboire <dboire@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/08 09:44:43 by dboire            #+#    #+#             */
-/*   Updated: 2024/07/12 14:12:53 by dboire           ###   ########.fr       */
+/*   Updated: 2024/07/13 14:32:28 by dboire           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,10 +23,10 @@ protected:
 	int 		_hit_points;
 	int 		_energy_points;
 	int 		_attack_damage;
+	ClapTrap();
 
 
 public:
-	ClapTrap();
 	ClapTrap(std::string const &name);
 	ClapTrap(const ClapTrap &other);
 	ClapTrap	operator=(const ClapTrap &other);

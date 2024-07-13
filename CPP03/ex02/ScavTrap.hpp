@@ -6,7 +6,7 @@
 /*   By: dboire <dboire@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 08:47:27 by dboire            #+#    #+#             */
-/*   Updated: 2024/07/10 15:40:44 by dboire           ###   ########.fr       */
+/*   Updated: 2024/07/13 14:32:35 by dboire           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,11 @@
 class ScavTrap : public ClapTrap
 {
 private :
+	ScavTrap();
 
 
 public :
 
-	ScavTrap();
 	ScavTrap(std::string const &name);
 	ScavTrap(const ScavTrap &other);
 	ScavTrap	operator=(const ScavTrap &other);
