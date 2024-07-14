@@ -6,7 +6,7 @@
 /*   By: dboire <dboire@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 13:45:26 by dboire            #+#    #+#             */
-/*   Updated: 2024/07/13 13:58:22 by dboire           ###   ########.fr       */
+/*   Updated: 2024/07/14 14:21:01 by dboire           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,10 @@ void Animal::makeSound() const
 	std::cout << "An animal is making a sound" << std::endl;
 }
 
-Brain Animal::*get_brain(){};
+Brain *Animal::get_brain() const 
+{
+	return(NULL);
+}
 
 // Cat
 
@@ -92,9 +95,9 @@ void Cat::makeSound() const
 	std::cout << "Cat is meowing" << std::endl;
 }
 
-Brain Cat::*get_brain() const
+Brain *Cat::get_brain() const
 {
-	return(this->brain)
+	return(this->brain);
 }
 
 // Dog
@@ -134,6 +137,11 @@ Dog::~Dog()
 void Dog::makeSound() const
 {
 	std::cout << "Dog is barking" << std::endl;
+}
+
+Brain *Dog::get_brain() const
+{
+	return(this->brain);
 }
 
 //Wrong Animal

@@ -6,7 +6,7 @@
 /*   By: dboire <dboire@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 13:45:23 by dboire            #+#    #+#             */
-/*   Updated: 2024/07/13 13:51:40 by dboire           ###   ########.fr       */
+/*   Updated: 2024/07/14 14:15:36 by dboire           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,23 +14,6 @@
 # define ANIMAL_HPP
 
 #include <iostream>
-
-class Animal {
-protected : 
-	std::string _type;
-	std::string _name;
-
-public :
-	Animal();
-	virtual ~Animal();
-	Animal(std::string const &type);
-	Animal(const Animal &other);
-	Animal	operator=(const Animal &other);
-	
-	virtual void makeSound() const;
-	virtual Brain get_brain();
-	std::string getType() const;
-};
 
 //Brain class
 
@@ -46,6 +29,26 @@ public:
 	
 	std::string ideas[100];
 };
+
+//Animal class
+
+class Animal {
+protected : 
+	std::string _type;
+	std::string _name;
+
+public :
+	Animal();
+	virtual ~Animal();
+	Animal(std::string const &type);
+	Animal(const Animal &other);
+	Animal	operator=(const Animal &other);
+	
+	virtual void makeSound() const;
+	virtual Brain *get_brain() const;
+	std::string getType() const;
+};
+
 
 // Dog class
 

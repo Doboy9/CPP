@@ -6,7 +6,7 @@
 /*   By: dboire <dboire@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 08:47:27 by dboire            #+#    #+#             */
-/*   Updated: 2024/07/13 14:32:35 by dboire           ###   ########.fr       */
+/*   Updated: 2024/07/14 14:57:42 by dboire           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,6 @@ public :
 	void	guardGate();
 	void	attack(const std::string &target);
 	void	get_hp(void);
-
 };
 
 

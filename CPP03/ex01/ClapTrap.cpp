@@ -6,7 +6,7 @@
 /*   By: dboire <dboire@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/08 09:44:41 by dboire            #+#    #+#             */
-/*   Updated: 2024/07/12 14:39:19 by dboire           ###   ########.fr       */
+/*   Updated: 2024/07/14 14:56:23 by dboire           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ ClapTrap::ClapTrap(const ClapTrap &other)
 	this->_hit_points = other._hit_points;
 	this->_energy_points = other._energy_points;
 	this->_attack_damage = other._attack_damage;
+	std::cout << "ClapTrap copy constructor created" << std::endl;
 }
 
 ClapTrap ClapTrap::operator=(const ClapTrap &other)
