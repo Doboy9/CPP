@@ -52,6 +52,8 @@ void Animal::makeSound() const
 	std::cout << "An animal is making a sound" << std::endl;
 }
 
+Brain Animal::*get_brain(){};
+
 // Cat
 
 Cat::Cat() : Animal("Cat")
@@ -90,9 +92,9 @@ void Cat::makeSound() const
 	std::cout << "Cat is meowing" << std::endl;
 }
 
-Brain Cat::*get_brain const()
+Brain Cat::*get_brain() const
 {
-	return(this->brain);
+	return(this->brain)
 }
 
 // Dog
@@ -127,11 +129,6 @@ Dog::~Dog()
 {
 	delete this->brain;
 	std::cout << "Default destructor of Dog" << std::endl;
-}
-
-Brain Dog::*get_brain const()
-{
-	return(this->brain);
 }
 
 void Dog::makeSound() const

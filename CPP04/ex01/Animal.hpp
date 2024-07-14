@@ -28,6 +28,7 @@ public :
 	Animal	operator=(const Animal &other);
 	
 	virtual void makeSound() const;
+	virtual Brain get_brain();
 	std::string getType() const;
 };
 
@@ -60,7 +61,7 @@ public:
 	Dog	operator=(const Dog &other);
 	~Dog();
 	
-	Brain *get_brain const();
+	Brain *get_brain() const;
 	void makeSound() const;
 };
 
@@ -78,7 +79,7 @@ public:
 	Cat	operator=(const Cat &other);
 	~Cat();
 
-	Brain *get_brain const();
+	Brain *get_brain() const;
 	void makeSound() const;
 };
 

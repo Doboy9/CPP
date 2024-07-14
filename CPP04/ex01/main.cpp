@@ -22,10 +22,13 @@ int main()
 	for (int i = 0; i < animal_nb; i++)
 	{
 		if(i < animal_nb / 2)
-			array[i] = new Dog();
-		else
 			array[i] = new Cat();
+		else
+			array[i] = new Dog();
 	}
+	
+	array[0]->get_brain() = "Hmmmm";
+	dog_brain->ideas[1] = array[3]->get_brain();
 	
 	return 0;
 }
