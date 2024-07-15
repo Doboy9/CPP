@@ -6,7 +6,7 @@
 /*   By: dboire <dboire@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 13:45:23 by dboire            #+#    #+#             */
-/*   Updated: 2024/07/14 14:15:36 by dboire           ###   ########.fr       */
+/*   Updated: 2024/07/15 11:16:43 by dboire           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ public:
 	Brain(const Brain &other);
 	Brain	operator=(const Brain &other);
 	~Brain();
-	
+
 	std::string ideas[100];
 };
 
@@ -43,7 +43,7 @@ public :
 	Animal(std::string const &type);
 	Animal(const Animal &other);
 	Animal	operator=(const Animal &other);
-	
+
 	virtual void makeSound() const;
 	virtual Brain *get_brain() const;
 	std::string getType() const;
