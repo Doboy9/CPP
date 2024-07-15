@@ -17,7 +17,7 @@ int main()
 	int		animal_nb = 4;
 	Animal	*array[animal_nb];
 	Brain	*cat_brain;
-	// Brain	*dog_brain;
+	Brain	*dog_brain;
 	
 	for (int i = 0; i < animal_nb; i++)
 	{
@@ -27,12 +27,15 @@ int main()
 			array[i] = new Dog();
 	}
 	
-	array[0]->get_brain()->ideas[0] = "Hmmmm";
 	cat_brain = array[0]->get_brain();
+	dog_brain = array[2]->get_brain();
+	cat_brain->ideas[0] = "Thinking";
+	dog_brain->ideas[0] = "Dog thinking";
 	// cat_brain->ideas[0] = array[0]->get_brain();
 	// dog_brain->ideas[1] = array[3]->get_brain();
 	
 	std::cout << cat_brain->ideas[0] << std::endl;
+	std::cout << dog_brain->ideas[0] << std::endl;
 	
 	return 0;
 }
