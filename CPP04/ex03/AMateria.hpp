@@ -6,7 +6,7 @@
 /*   By: dboire <dboire@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 13:01:50 by dboire            #+#    #+#             */
-/*   Updated: 2024/07/16 15:56:10 by dboire           ###   ########.fr       */
+/*   Updated: 2024/07/16 16:05:28 by dboire           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ private:
 	std::string _name;
 
 public :
-	Character(std::string &name);
+	Character(const std::string &name);
 	std::string const & getName() const;
 	void equip(AMateria* m);
 	void unequip(int idx);
@@ -82,18 +82,16 @@ public :
 };
 
 class Ice : public AMateria{
-private:
-	Ice();
 public:
+	Ice();
 	~Ice();
 	void use(ICharacter& target);
 	AMateria* clone() const;
 };
 
 class Cure : public AMateria{
-private:
-	Cure();
 public:
+	Cure();
 	~Cure();
 	void use(ICharacter& target);
 	AMateria* clone() const;

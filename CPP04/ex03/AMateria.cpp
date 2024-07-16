@@ -6,7 +6,7 @@
 /*   By: dboire <dboire@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 13:01:52 by dboire            #+#    #+#             */
-/*   Updated: 2024/07/16 15:56:30 by dboire           ###   ########.fr       */
+/*   Updated: 2024/07/16 16:05:15 by dboire           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ std::string const &AMateria::getType() const{
 
 void AMateria::use(ICharacter& target)
 {
+	(void)target;
 	return ;
 }
 
@@ -50,7 +51,7 @@ void AMateria::use(ICharacter& target)
 Character::Character(){};
 Character::~Character(){};
 
-Character::Character(std::string &name)
+Character::Character(const std::string &name)
 {
 	this->_name = name;
 }
@@ -62,16 +63,20 @@ std::string const &Character::getName() const
 
 void Character::equip(AMateria* m)
 {
+	(void)m;
 	return ;
 }
 
 void Character::unequip(int idx)
 {
+	(void)idx;
 	return ;
 }
 
 void Character::use(int idx, ICharacter& target)
 {
+	(void)idx;
+	(void)target;
 	return ;
 }
 
