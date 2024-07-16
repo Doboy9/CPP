@@ -6,7 +6,7 @@
 /*   By: dboire <dboire@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 13:01:52 by dboire            #+#    #+#             */
-/*   Updated: 2024/07/16 16:05:15 by dboire           ###   ########.fr       */
+/*   Updated: 2024/07/16 17:37:02 by dboire           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,17 @@
 
 //MateriaSource
 
-MateriaSource::MateriaSource(){};
-MateriaSource::~MateriaSource(){};
+MateriaSource::MateriaSource()
+{
+	std::cout << "Default constructor of MateriaSource" << std::endl;
+}
+MateriaSource::~MateriaSource()
+{
+	std::cout << "Default destructor of MateriaSource" << std::endl;
+}
 
-void MateriaSource::learnMateria(AMateria *){}
+void MateriaSource::learnMateria(AMateria *){};
+
 AMateria* MateriaSource::createMateria(std::string const &type){
 	if(type == "ice")
 		return(new Ice());
@@ -29,9 +36,14 @@ AMateria* MateriaSource::createMateria(std::string const &type){
 
 //AMateria
 
-AMateria::AMateria(){};
-
-AMateria::~AMateria(){};
+AMateria::AMateria()
+{
+	std::cout << "Default constructor of AMateria" << std::endl;
+}
+AMateria::~AMateria()
+{
+	std::cout << "Default destructor of AMateria" << std::endl;
+}
 
 AMateria::AMateria(std::string const &type){
 	this->_type = type;
@@ -44,12 +56,19 @@ std::string const &AMateria::getType() const{
 void AMateria::use(ICharacter& target)
 {
 	(void)target;
+	std::cout << "AMateria::use" << std::endl;
 	return ;
 }
 
 //Character
-Character::Character(){};
-Character::~Character(){};
+Character::Character()
+{
+	std::cout << "Default constructor of Character" << std::endl;
+}
+Character::~Character()
+{
+	std::cout << "Default destructor of Character" << std::endl;
+}
 
 Character::Character(const std::string &name)
 {
@@ -63,13 +82,30 @@ std::string const &Character::getName() const
 
 void Character::equip(AMateria* m)
 {
-	(void)m;
+	std::cout << "Character::Equip" << std::endl;
+	if(!m)
+	{
+		std::cout << "No materia passed" << std::endl;
+		return ;
+	}
+	for(int i = 0; i < 4; i++)
+	{
+		if(!tab[i])
+		{
+			std::cout << i << std::endl;
+			tab[i] = m;
+			return ;
+		}
+	}
+	// Keep the materia i intended to get 
+	std::cout << "Character::equip" << std::endl;
 	return ;
 }
 
 void Character::unequip(int idx)
 {
 	(void)idx;
+	std::cout << "Character::unequip" << std::endl;
 	return ;
 }
 
@@ -77,13 +113,20 @@ void Character::use(int idx, ICharacter& target)
 {
 	(void)idx;
 	(void)target;
+	std::cout << "Character::use" << std::endl;
 	return ;
 }
 
 //Cure
 
-Cure::Cure(){};
-Cure::~Cure(){};
+Cure::Cure()
+{
+	std::cout << "Default constructor of Cure" << std::endl;
+}
+Cure::~Cure()
+{
+	std::cout << "Default destructor of Cure" << std::endl;
+}
 
 void Cure::use(ICharacter &target)
 {
@@ -98,8 +141,12 @@ AMateria* Cure::clone() const
 
 //Ice
 
-Ice::Ice(){};
-Ice::~Ice(){};
+Ice::Ice(){
+	std::cout << "Default constructor of Ice" << std::endl;
+}
+Ice::~Ice(){
+	std::cout << "Default destructor of Ice" << std::endl;
+}
 
 void Ice::use(ICharacter &target)
 {
