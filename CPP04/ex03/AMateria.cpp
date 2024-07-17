@@ -74,11 +74,18 @@ void AMateria::use(ICharacter& target)
 //Character
 Character::Character()
 {
+	for(int i = 0; i < 4; i++)
+		this->_stock[i] = 0;
 	std::cout << "Default constructor of Character" << std::endl;
 }
 Character::~Character()
 {
-	std::cout << "Default destructor of Character" << std::endl;
+	for(int i = 0; i < 4; i++)
+	{
+		if(this->_stock[i])
+			delete this->_stock[i];
+	}
+	std::cout << "Default destructor of Character " << this->getName() << std::endl;
 }
 
 Character::Character(const std::string &name)
@@ -101,16 +108,20 @@ void Character::equip(AMateria* m)
 	}
 	for(int i = 0; i < 4; i++)
 	{
-		if(!tab[i])
+		if(!_stock[i])
 		{
 			std::cout << i << std::endl;
-			tab[i] = m;
+			_stock[i] = m;
 			return ;
 		}
 	}
-	// Keep the materia i intended to get 
 	std::cout << "Character::equip" << std::endl;
 	return ;
+}
+
+AMateria *Character::get_stock(int idx)
+{
+	return(this->_stock[idx]);
 }
 
 void Character::unequip(int idx)
@@ -142,12 +153,17 @@ Cure::~Cure()
 void Cure::use(ICharacter &target)
 {
 	(void)target;
-	std::cout << "* heals " << "'s wounds *" << std::endl;
+	std::cout << "* heals " << target.getName() << "'s wounds *" << std::endl;
 }
 
-AMateria* Cure::clone() const
+Cure *Cure::clone() const
 {
 	return(new Cure(*this));
+}
+
+std::string const &Cure::get_type() const
+{
+	return(this->_type);
 }
 
 //Ice
@@ -161,10 +177,13 @@ Ice::~Ice(){
 
 void Ice::use(ICharacter &target)
 {
-	(void)target;
-	std::cout << "* shoots an ice bolt at "  << " *" << std::endl;
+	std::cout << "* shoots an ice bolt at " << target.getName()  << " *" << std::endl;
 }
 
-AMateria* Ice::clone() const{
+Ice *Ice::clone() const{
 	return(new Ice(*this));
+}
+
+std::string const &Ice::get_type() const{
+	return(this->_type);
 }

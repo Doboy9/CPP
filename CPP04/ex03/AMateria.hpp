@@ -55,7 +55,7 @@ class Character : public ICharacter
 private:
 	Character();
 	std::string _name;
-	AMateria *tab[4];
+	AMateria *_stock[4];
 
 public:
 	Character(const std::string &name);
@@ -63,6 +63,7 @@ public:
 	void equip(AMateria* m);
 	void unequip(int idx);
 	void use(int idx, ICharacter& target);
+	AMateria *get_stock(int idx);
 	
 	~Character();
 };
@@ -88,15 +89,19 @@ public:
 	Ice();
 	~Ice();
 	void use(ICharacter& target);
-	AMateria* clone() const;
+	Ice *clone() const;
+	std::string const &get_type() const;
 };
 
 class Cure : public AMateria{
+private:
+	std::string _type;
 public:
 	Cure();
 	~Cure();
 	void use(ICharacter& target);
-	AMateria* clone() const;
+	Cure *clone() const;
+	std::string const &get_type() const;
 };
 
 #endif
