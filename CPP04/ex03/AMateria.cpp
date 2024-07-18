@@ -6,7 +6,7 @@
 /*   By: dboire <dboire@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 13:01:52 by dboire            #+#    #+#             */
-/*   Updated: 2024/07/16 17:37:02 by dboire           ###   ########.fr       */
+/*   Updated: 2024/07/18 18:51:35 by dboire           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,37 +16,65 @@
 
 MateriaSource::MateriaSource()
 {
+	for(int i = 0; i < 4; i++)
+	{
+		_learned_materia[i] = 0;
+	}
 	std::cout << "Default constructor of MateriaSource" << std::endl;
 }
+
 MateriaSource::~MateriaSource()
 {
+	for(int i = 0; i < 4; i++)
+	{
+		if(_learned_materia[i])
+		{
+			delete _learned_materia[i];
+			_learned_materia[i] = NULL;
+		}
+	}
 	std::cout << "Default destructor of MateriaSource" << std::endl;
 }
 
-void MateriaSource::learnMateria(AMateria *){};
+void MateriaSource::learnMateria(AMateria *m)
+{
+	if(!m)
+	{
+		std::cout << "Cannot learn a NULL Materia" << std::endl;
+		return ;
+	}
+	for(int i = 0; i < 4; i++)
+	{
+		if(!_learned_materia[i])
+		{
+			_learned_materia[i] = m;
+			return ;
+		}
+	}
+	return ;
+}
 
-AMateria* MateriaSource::createMateria(std::string const &type){
-	if(type == "ice")
-		return(new Ice());
-	else if(type == "cure")
-		return(new Cure());
-	else
-		return (NULL);
+AMateria* MateriaSource::createMateria(std::string const &type)
+{
+	for(int i = 0; i < 4; i++)
+	{
+		if(_learned_materia[i] != NULL && _learned_materia[i]->getType() == type)
+			return (_learned_materia[i]->clone());
+	}
+	return(NULL);
 }
 
 //AMateria
 
-AMateria::AMateria()
-{
-	std::cout << "Default constructor of AMateria" << std::endl;
-}
 AMateria::~AMateria()
 {
+	std::cout << "AMateria of type " << _type << " destroyed" << std::endl;
 	std::cout << "Default destructor of AMateria" << std::endl;
 }
 
-AMateria::AMateria(std::string const &type){
-	this->_type = type;
+AMateria::AMateria(std::string const &type) : _type(type)
+{
+	std::cout << "AMateria of type " << _type << " constructed" << std::endl;
 }
 
 AMateria::AMateria(AMateria const &ref)
@@ -62,7 +90,7 @@ AMateria &AMateria::operator=(const AMateria &other)
 }
 
 std::string const &AMateria::getType() const{
-	return(this->_type);
+	return(_type);
 }
 
 void AMateria::use(ICharacter& target)
@@ -72,12 +100,7 @@ void AMateria::use(ICharacter& target)
 }
 
 //Character
-Character::Character()
-{
-	for(int i = 0; i < 4; i++)
-		this->_stock[i] = 0;
-	std::cout << "Default constructor of Character" << std::endl;
-}
+
 Character::~Character()
 {
 	for(int i = 0; i < 4; i++)
@@ -88,9 +111,11 @@ Character::~Character()
 	std::cout << "Default destructor of Character " << this->getName() << std::endl;
 }
 
-Character::Character(const std::string &name)
+Character::Character(const std::string &name) : _name(name)
 {
-	this->_name = name;
+	for(int i = 0; i < 4; i++)
+		this->_stock[i] = 0;
+	std::cout << "Default constructor of Character" << std::endl;
 }
 
 std::string const &Character::getName() const
@@ -110,12 +135,11 @@ void Character::equip(AMateria* m)
 	{
 		if(!_stock[i])
 		{
-			std::cout << i << std::endl;
-			_stock[i] = m;
+			std::cout << i;
+			this->_stock[i] = m;
 			return ;
 		}
 	}
-	std::cout << "Character::equip" << std::endl;
 	return ;
 }
 
@@ -126,22 +150,30 @@ AMateria *Character::get_stock(int idx)
 
 void Character::unequip(int idx)
 {
-	(void)idx;
-	std::cout << "Character::unequip" << std::endl;
+	if(idx >= 0 && idx < 4 && _stock[idx] != NULL)
+	{
+		AMateria *i = _stock[idx];
+		_stock[idx] = NULL;
+		Materia_stock *stock = new Materia_stock;
+		stock->materia = i;
+		stock->next = materia;
+		materia = stock;
+		std::cout << "Character::unequip" << std::endl;
+	}
 	return ;
 }
 
 void Character::use(int idx, ICharacter& target)
 {
-	(void)idx;
-	(void)target;
-	std::cout << "Character::use" << std::endl;
+	std::cout << "Character " << this->getName() << " use " << this->get_stock(idx)->getType() << " on " << target.getName() << std::endl;
+	this->get_stock(idx)->use(target);
+	this->unequip(idx);
 	return ;
 }
 
 //Cure
 
-Cure::Cure()
+Cure::Cure() : AMateria("cure")
 {
 	std::cout << "Default constructor of Cure" << std::endl;
 }
@@ -152,7 +184,6 @@ Cure::~Cure()
 
 void Cure::use(ICharacter &target)
 {
-	(void)target;
 	std::cout << "* heals " << target.getName() << "'s wounds *" << std::endl;
 }
 
@@ -168,10 +199,13 @@ std::string const &Cure::get_type() const
 
 //Ice
 
-Ice::Ice(){
+Ice::Ice() : AMateria("ice")
+{
 	std::cout << "Default constructor of Ice" << std::endl;
 }
-Ice::~Ice(){
+
+Ice::~Ice()
+{
 	std::cout << "Default destructor of Ice" << std::endl;
 }
 
@@ -180,7 +214,8 @@ void Ice::use(ICharacter &target)
 	std::cout << "* shoots an ice bolt at " << target.getName()  << " *" << std::endl;
 }
 
-Ice *Ice::clone() const{
+Ice *Ice::clone() const
+{
 	return(new Ice(*this));
 }
 

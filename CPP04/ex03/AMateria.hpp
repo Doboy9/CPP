@@ -6,7 +6,7 @@
 /*   By: dboire <dboire@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 13:01:50 by dboire            #+#    #+#             */
-/*   Updated: 2024/07/16 17:35:52 by dboire           ###   ########.fr       */
+/*   Updated: 2024/07/18 18:53:17 by dboire           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 #include <iostream>
 
 class AMateria;
+class Materia_stock;
 class ICharacter;
 class Character;
 class IMateriaSource;
@@ -27,17 +28,24 @@ class Cure;
 class AMateria
 {
 protected:
-	AMateria();
 	std::string _type;
 
 public:
 	AMateria(std::string const &type);
 	std::string const &getType() const; //Returns the materia type
 	virtual AMateria* clone() const = 0;
-	virtual void use(ICharacter& target);
+	virtual void use(ICharacter &target);
 	virtual ~AMateria();
 	AMateria(AMateria const &ref);
 	AMateria &operator=(const AMateria &other);
+};
+
+class Materia_stock
+{
+public:
+	AMateria *materia;
+	Materia_stock *next;
+	MateriaNode* floorInventory = NULL;
 };
 
 class ICharacter
@@ -60,7 +68,7 @@ private:
 public:
 	Character(const std::string &name);
 	std::string const &getName() const;
-	void equip(AMateria* m);
+	void equip(AMateria *m);
 	void unequip(int idx);
 	void use(int idx, ICharacter& target);
 	AMateria *get_stock(int idx);
@@ -77,6 +85,8 @@ public:
 };
 
 class MateriaSource : public IMateriaSource{
+private:
+	AMateria *_learned_materia[4];
 public :
 	MateriaSource();
 	~MateriaSource();
@@ -85,6 +95,8 @@ public :
 };
 
 class Ice : public AMateria{
+private:
+	std::string _type;
 public:
 	Ice();
 	~Ice();
