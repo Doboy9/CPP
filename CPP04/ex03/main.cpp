@@ -6,7 +6,7 @@
 /*   By: dboire <dboire@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 13:01:11 by dboire            #+#    #+#             */
-/*   Updated: 2024/07/18 17:27:19 by dboire           ###   ########.fr       */
+/*   Updated: 2024/07/19 15:10:48 by dboire           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,9 @@ int main()
 	src->learnMateria(new Ice());
 	src->learnMateria(new Cure());
 	src->learnMateria(new Ice());
+	src->learnMateria(new Cure());
+	src->learnMateria(new Cure());
+	src->learnMateria(new Cure());
 	src->learnMateria(new Cure());
 	src->learnMateria(new Cure());
 	

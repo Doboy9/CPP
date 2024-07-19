@@ -6,7 +6,7 @@
 /*   By: dboire <dboire@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 13:01:50 by dboire            #+#    #+#             */
-/*   Updated: 2024/07/18 18:53:17 by dboire           ###   ########.fr       */
+/*   Updated: 2024/07/19 15:42:16 by dboire           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ class Materia_stock
 public:
 	AMateria *materia;
 	Materia_stock *next;
-	MateriaNode* floorInventory = NULL;
+	Materia_stock *head;
 };
 
 class ICharacter
@@ -72,7 +72,7 @@ public:
 	void unequip(int idx);
 	void use(int idx, ICharacter& target);
 	AMateria *get_stock(int idx);
-	
+	Materia_stock *head;
 	~Character();
 };
 

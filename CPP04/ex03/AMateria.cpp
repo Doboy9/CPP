@@ -6,7 +6,7 @@
 /*   By: dboire <dboire@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 13:01:52 by dboire            #+#    #+#             */
-/*   Updated: 2024/07/18 18:51:35 by dboire           ###   ########.fr       */
+/*   Updated: 2024/07/19 16:40:35 by dboire           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,8 @@ void MateriaSource::learnMateria(AMateria *m)
 			_learned_materia[i] = m;
 			return ;
 		}
+		if(i == 3 && _learned_materia[3] != m)
+			delete m;
 	}
 	return ;
 }
@@ -99,6 +101,12 @@ void AMateria::use(ICharacter& target)
 	return ;
 }
 
+// Materia_stock
+
+Materia_stock::Materia_stock() : materia(NULL), next(NULL)
+{
+	std::cout << "Materia stock constructor" << std::endl;
+}
 //Character
 
 Character::~Character()
@@ -115,6 +123,7 @@ Character::Character(const std::string &name) : _name(name)
 {
 	for(int i = 0; i < 4; i++)
 		this->_stock[i] = 0;
+	head = NULL;
 	std::cout << "Default constructor of Character" << std::endl;
 }
 
@@ -140,6 +149,8 @@ void Character::equip(AMateria* m)
 			return ;
 		}
 	}
+	if(_stock[3] && _stock[3] != m)
+		delete m;
 	return ;
 }
 
@@ -152,12 +163,19 @@ void Character::unequip(int idx)
 {
 	if(idx >= 0 && idx < 4 && _stock[idx] != NULL)
 	{
-		AMateria *i = _stock[idx];
-		_stock[idx] = NULL;
-		Materia_stock *stock = new Materia_stock;
-		stock->materia = i;
-		stock->next = materia;
-		materia = stock;
+		if(head == NULL)
+		{
+			Materia_stock *stock = new Materia_stock;
+			stock->materia = _stock[idx];
+			head = stock;
+		}
+		else
+		{
+			Materia_stock *tmp = head;
+			while(tmp->next != NULL)
+				tmp = tmp->next;
+			tmp->next = NULL;
+		}
 		std::cout << "Character::unequip" << std::endl;
 	}
 	return ;
@@ -165,10 +183,13 @@ void Character::unequip(int idx)
 
 void Character::use(int idx, ICharacter& target)
 {
-	std::cout << "Character " << this->getName() << " use " << this->get_stock(idx)->getType() << " on " << target.getName() << std::endl;
-	this->get_stock(idx)->use(target);
-	this->unequip(idx);
-	return ;
+	if(idx >= 0 && idx < 4 && _stock[idx] != NULL)
+	{
+		std::cout << "Character " << this->getName() << " use " << this->get_stock(idx)->getType() << " on " << target.getName() << std::endl;
+		this->get_stock(idx)->use(target);
+		this->unequip(idx);
+		return ;
+	}
 }
 
 //Cure
