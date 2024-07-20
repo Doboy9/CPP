@@ -6,7 +6,7 @@
 /*   By: dboire <dboire@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 13:01:50 by dboire            #+#    #+#             */
-/*   Updated: 2024/07/19 15:42:16 by dboire           ###   ########.fr       */
+/*   Updated: 2024/07/20 10:52:16 by dboire           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,6 +113,17 @@ public:
 	~Cure();
 	void use(ICharacter& target);
 	Cure *clone() const;
+	std::string const &get_type() const;
+};
+
+class Random_Materia : public AMateria{
+private:
+	std::string _type;
+public:
+	Random_Materia();
+	~Random_Materia();
+	void use(ICharacter& target);
+	Random_Materia *clone() const;
 	std::string const &get_type() const;
 };
 

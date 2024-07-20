@@ -6,7 +6,7 @@
 /*   By: dboire <dboire@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 13:01:52 by dboire            #+#    #+#             */
-/*   Updated: 2024/07/19 16:40:35 by dboire           ###   ########.fr       */
+/*   Updated: 2024/07/20 10:52:10 by dboire           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,16 +101,18 @@ void AMateria::use(ICharacter& target)
 	return ;
 }
 
-// Materia_stock
-
-Materia_stock::Materia_stock() : materia(NULL), next(NULL)
-{
-	std::cout << "Materia stock constructor" << std::endl;
-}
 //Character
 
 Character::~Character()
 {
+	Materia_stock *current = head;
+	while(current != NULL)
+	{
+		Materia_stock *next = current->next;
+		delete current->materia;
+		delete current;
+		current = next;
+	}
 	for(int i = 0; i < 4; i++)
 	{
 		if(this->_stock[i])
@@ -163,19 +165,19 @@ void Character::unequip(int idx)
 {
 	if(idx >= 0 && idx < 4 && _stock[idx] != NULL)
 	{
+		Materia_stock *stock = new Materia_stock;
+		stock->materia = _stock[idx];
+		stock->next = NULL;
 		if(head == NULL)
-		{
-			Materia_stock *stock = new Materia_stock;
-			stock->materia = _stock[idx];
 			head = stock;
-		}
 		else
 		{
 			Materia_stock *tmp = head;
 			while(tmp->next != NULL)
 				tmp = tmp->next;
-			tmp->next = NULL;
+			tmp->next = stock;
 		}
+		_stock[idx] = NULL;
 		std::cout << "Character::unequip" << std::endl;
 	}
 	return ;
@@ -241,5 +243,31 @@ Ice *Ice::clone() const
 }
 
 std::string const &Ice::get_type() const{
+	return(this->_type);
+}
+
+// Random_Materia
+
+Random_Materia::Random_Materia() : AMateria("random materia")
+{
+	std::cout << "Default constructor of Random_Materia" << std::endl;
+}
+
+Random_Materia::~Random_Materia()
+{
+	std::cout << "Default destructor of Random_Materia" << std::endl;
+}
+
+void Random_Materia::use(ICharacter &target)
+{
+	std::cout << "* " << target.getName()  << " is doing something with a random materia *" << std::endl;
+}
+
+Random_Materia *Random_Materia::clone() const
+{
+	return(new Random_Materia(*this));
+}
+
+std::string const &Random_Materia::get_type() const{
 	return(this->_type);
 }
