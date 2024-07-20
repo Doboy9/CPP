@@ -6,7 +6,7 @@
 /*   By: dboire <dboire@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 13:01:11 by dboire            #+#    #+#             */
-/*   Updated: 2024/07/20 10:51:08 by dboire           ###   ########.fr       */
+/*   Updated: 2024/07/20 11:47:50 by dboire           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,8 @@ int main()
 	AMateria* tmp;
 	tmp = src->createMateria("random materia");
 	me->equip(tmp);
+	tmp = src->createMateria("False materia");
+	me->equip(tmp);
 	tmp = src->createMateria("cure");
 	me->equip(tmp);
 	tmp = src->createMateria("ice");
@@ -44,8 +46,13 @@ int main()
 	
 	ICharacter* bob = new Character("bob");
 	
-	me->use(0, *bob);
 	me->use(1, *bob);
+	src->learnMateria(new Random_Materia());
+	tmp = src->createMateria("random materia");
+	me->equip(tmp);
+	me->use(1, *bob);
+	me->use(1, *bob);
+	me->use(0, *bob);
 	me->use(2, *bob);
 	me->use(3, *bob);
 	me->use(4, *bob);
@@ -53,7 +60,9 @@ int main()
 	me->unequip(1);
 	
 	delete bob;
+	std::cout << std::endl;
 	delete me;
+	std::cout << std::endl;
 	delete src;
 	return 0;
 }

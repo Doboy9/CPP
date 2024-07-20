@@ -6,7 +6,7 @@
 /*   By: dboire <dboire@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 13:01:50 by dboire            #+#    #+#             */
-/*   Updated: 2024/07/20 10:52:16 by dboire           ###   ########.fr       */
+/*   Updated: 2024/07/20 11:28:12 by dboire           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,14 +40,6 @@ public:
 	AMateria &operator=(const AMateria &other);
 };
 
-class Materia_stock
-{
-public:
-	AMateria *materia;
-	Materia_stock *next;
-	Materia_stock *head;
-};
-
 class ICharacter
 {
 public:
@@ -61,9 +53,9 @@ public:
 class Character : public ICharacter
 {
 private:
-	Character();
 	std::string _name;
 	AMateria *_stock[4];
+	Character();
 
 public:
 	Character(const std::string &name);
@@ -72,7 +64,9 @@ public:
 	void unequip(int idx);
 	void use(int idx, ICharacter& target);
 	AMateria *get_stock(int idx);
-	Materia_stock *head;
+	AMateria *materia;
+	Character *next;
+	Character *head;
 	~Character();
 };
 

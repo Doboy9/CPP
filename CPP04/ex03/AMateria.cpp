@@ -6,7 +6,7 @@
 /*   By: dboire <dboire@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 13:01:52 by dboire            #+#    #+#             */
-/*   Updated: 2024/07/20 10:52:10 by dboire           ###   ########.fr       */
+/*   Updated: 2024/07/20 11:48:46 by dboire           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,7 @@ AMateria* MateriaSource::createMateria(std::string const &type)
 		if(_learned_materia[i] != NULL && _learned_materia[i]->getType() == type)
 			return (_learned_materia[i]->clone());
 	}
+	std::cout << " !Not a valid type! " << type << std::endl;
 	return(NULL);
 }
 
@@ -103,12 +104,19 @@ void AMateria::use(ICharacter& target)
 
 //Character
 
+Character::Character(): _name(""), materia(NULL), next(NULL), head(NULL)
+{
+	for(int i = 0; i < 4; i++)
+		this->_stock[i] = 0;
+	std::cout << "Default constructor of Character" << std::endl;
+}
+
 Character::~Character()
 {
-	Materia_stock *current = head;
+	Character *current = head;
 	while(current != NULL)
 	{
-		Materia_stock *next = current->next;
+		Character *next = current->next;
 		delete current->materia;
 		delete current;
 		current = next;
@@ -121,12 +129,11 @@ Character::~Character()
 	std::cout << "Default destructor of Character " << this->getName() << std::endl;
 }
 
-Character::Character(const std::string &name) : _name(name)
+Character::Character(const std::string &name) : _name(name), materia(NULL), next(NULL), head(NULL)
 {
 	for(int i = 0; i < 4; i++)
 		this->_stock[i] = 0;
-	head = NULL;
-	std::cout << "Default constructor of Character" << std::endl;
+	std::cout << "Parameter constructor of Character" << std::endl;
 }
 
 std::string const &Character::getName() const
@@ -136,7 +143,7 @@ std::string const &Character::getName() const
 
 void Character::equip(AMateria* m)
 {
-	std::cout << "Character::Equip" << std::endl;
+	std::cout << "Character::Equip : ";
 	if(!m)
 	{
 		std::cout << "No materia passed" << std::endl;
@@ -146,13 +153,16 @@ void Character::equip(AMateria* m)
 	{
 		if(!_stock[i])
 		{
-			std::cout << i;
+			std::cout << i << " Equipping " << m->getType() << std::endl;
 			this->_stock[i] = m;
 			return ;
 		}
 	}
 	if(_stock[3] && _stock[3] != m)
+	{
+		std::cout << "Inventory full, deleting " << m->getType() << std::endl;
 		delete m;
+	}
 	return ;
 }
 
@@ -165,20 +175,24 @@ void Character::unequip(int idx)
 {
 	if(idx >= 0 && idx < 4 && _stock[idx] != NULL)
 	{
-		Materia_stock *stock = new Materia_stock;
-		stock->materia = _stock[idx];
-		stock->next = NULL;
+		Character *floor_stock = new Character;
+		floor_stock->materia = _stock[idx];
+		floor_stock->next = NULL;
 		if(head == NULL)
-			head = stock;
+			head = floor_stock;
 		else
 		{
-			Materia_stock *tmp = head;
+			Character *tmp = head;
 			while(tmp->next != NULL)
 				tmp = tmp->next;
-			tmp->next = stock;
+			tmp->next = floor_stock;
 		}
 		_stock[idx] = NULL;
 		std::cout << "Character::unequip" << std::endl;
+	}
+	else
+	{
+		std::cout << "Slot empty, nothing to unequip" << std::endl;
 	}
 	return ;
 }
@@ -191,6 +205,10 @@ void Character::use(int idx, ICharacter& target)
 		this->get_stock(idx)->use(target);
 		this->unequip(idx);
 		return ;
+	}
+	if(_stock[idx] == NULL)
+	{
+		std::cout << "Nothing in this slot !" << std::endl;
 	}
 }
 
