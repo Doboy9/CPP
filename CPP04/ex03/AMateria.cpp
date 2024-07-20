@@ -36,6 +36,35 @@ MateriaSource::~MateriaSource()
 	std::cout << "Default destructor of MateriaSource" << std::endl;
 }
 
+MateriaSource::MateriaSource(const MateriaSource &other)
+{
+	for(int i = 0; i < 4; i++)
+	{
+		if(other._learned_materia[i])
+			this->_learned_materia[i] = other._learned_materia[i];
+		else
+			this->_learned_materia[i] = 0;
+	}
+	std::cout << "Copy constructor of MateriaSource" << std::endl;
+}
+
+MateriaSource &MateriaSource::operator=(MateriaSource const &other)
+{
+	if(this != &other)
+	{
+		for(int i = 0; i < 4; i++)
+		{
+			if (this->_learned_materia[i])
+				delete _learned_materia[i];
+			if (other._learned_materia[i])
+				this->_learned_materia[i] = other._learned_materia[i]->clone();
+			else if(!this->_learned_materia[i])
+				this->_learned_materia[i] = 0;
+		}
+	}
+	return (*this);
+}
+
 void MateriaSource::learnMateria(AMateria *m)
 {
 	if(!m)
@@ -103,6 +132,33 @@ void AMateria::use(ICharacter& target)
 }
 
 //Character
+
+Character::Character(const Character &other) : _name(other.getName()), materia(NULL), next(NULL), head(NULL)
+{
+	for(int i = 0; i < 4; i++)
+	{
+		if(other._stock[i])
+			this->_stock[i] = other._stock[i]->clone();
+		else
+			this->_stock[i] = 0;
+	}
+	this->_name += ".copy";
+	std::cout << "Deep copy of the character created : "<< this->getName() << std::endl;
+}
+
+Character &Character::operator=(const Character &other)
+{
+	for(int i = 0; i < 4; i++)
+	{
+		if (this->_stock[i])
+			delete _stock[i];
+		if (other._stock[i])
+			this->_stock[i] = other._stock[i]->clone();
+		else if(!this->_stock[i])
+			this->_stock[i] = 0;
+	}
+	return(*this);
+}
 
 Character::Character(): _name(""), materia(NULL), next(NULL), head(NULL)
 {
@@ -223,6 +279,18 @@ Cure::~Cure()
 	std::cout << "Default destructor of Cure" << std::endl;
 }
 
+Cure::Cure(const Cure &other) : AMateria(other.getType())
+{
+	std::cout << "Copy constructor of " << this->getType() << std::endl;
+}
+
+Cure &Cure::operator=(const Cure &other)
+{
+	if(this != &other)
+		AMateria::operator=(other);
+	return(*this);
+}
+
 void Cure::use(ICharacter &target)
 {
 	std::cout << "* heals " << target.getName() << "'s wounds *" << std::endl;
@@ -250,6 +318,18 @@ Ice::~Ice()
 	std::cout << "Default destructor of Ice" << std::endl;
 }
 
+Ice::Ice(const Ice &other) : AMateria(other.getType())
+{
+	std::cout << "Copy constructor of " << this->getType() << std::endl;
+}
+
+Ice &Ice::operator=(const Ice &other)
+{
+	if(this != &other)
+		AMateria::operator=(other);
+	return(*this);
+}
+
 void Ice::use(ICharacter &target)
 {
 	std::cout << "* shoots an ice bolt at " << target.getName()  << " *" << std::endl;
@@ -274,6 +354,18 @@ Random_Materia::Random_Materia() : AMateria("random materia")
 Random_Materia::~Random_Materia()
 {
 	std::cout << "Default destructor of Random_Materia" << std::endl;
+}
+
+Random_Materia::Random_Materia(const Random_Materia &other) : AMateria(other.getType())
+{
+	std::cout << "Copy constructor of " << this->getType() << std::endl;
+}
+
+Random_Materia &Random_Materia::operator=(const Random_Materia &other)
+{
+	if(this != &other)
+		AMateria::operator=(other);
+	return(*this);
 }
 
 void Random_Materia::use(ICharacter &target)

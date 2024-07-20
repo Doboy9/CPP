@@ -24,7 +24,7 @@ int main()
 	src->learnMateria(new Cure());
 	src->learnMateria(new Cure());
 	
-	ICharacter* me = new Character("me");
+	Character* me = new Character("me");
 	
 	AMateria* tmp;
 	tmp = src->createMateria("random materia");
@@ -52,17 +52,29 @@ int main()
 	me->equip(tmp);
 	me->use(1, *bob);
 	me->use(1, *bob);
+	
+	Character* me2 = new Character(*me);
+	
 	me->use(0, *bob);
 	me->use(2, *bob);
 	me->use(3, *bob);
 	me->use(4, *bob);
 	me->use(5, *bob);
 	me->unequip(1);
+	std::cout << "ME2" << std::endl;
+	me2->use(0, *bob);
+	me2->use(1, *bob);
+	me2->use(2, *bob);
+	me2->use(3, *bob);
+	me2->use(4, *bob);
+	me2->use(5, *bob);
+	me2->unequip(1);
 	
 	delete bob;
 	std::cout << std::endl;
 	delete me;
 	std::cout << std::endl;
 	delete src;
+	delete me2;
 	return 0;
 }

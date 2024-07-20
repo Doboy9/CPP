@@ -59,6 +59,9 @@ private:
 
 public:
 	Character(const std::string &name);
+	Character(const Character &other);
+	Character	&operator=(const Character &other);
+	
 	std::string const &getName() const;
 	void equip(AMateria *m);
 	void unequip(int idx);
@@ -84,6 +87,9 @@ private:
 public :
 	MateriaSource();
 	~MateriaSource();
+	MateriaSource(const MateriaSource &other);
+	MateriaSource &operator=(const MateriaSource &other);
+	
 	void learnMateria(AMateria *);
 	AMateria* createMateria(std::string const & type);
 };
@@ -94,6 +100,9 @@ private:
 public:
 	Ice();
 	~Ice();
+	Ice(const Ice &other);
+	Ice &operator=(const Ice &other);
+	
 	void use(ICharacter& target);
 	Ice *clone() const;
 	std::string const &get_type() const;
@@ -105,6 +114,9 @@ private:
 public:
 	Cure();
 	~Cure();
+	Cure(const Cure &other);
+	Cure	&operator=(const Cure &other);
+	
 	void use(ICharacter& target);
 	Cure *clone() const;
 	std::string const &get_type() const;
@@ -116,6 +128,9 @@ private:
 public:
 	Random_Materia();
 	~Random_Materia();
+	Random_Materia(const Random_Materia &other);
+	Random_Materia &operator=(const Random_Materia &other);
+	
 	void use(ICharacter& target);
 	Random_Materia *clone() const;
 	std::string const &get_type() const;
