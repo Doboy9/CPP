@@ -6,7 +6,7 @@
 /*   By: dboire <dboire@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 13:45:26 by dboire            #+#    #+#             */
-/*   Updated: 2024/07/12 15:49:26 by dboire           ###   ########.fr       */
+/*   Updated: 2024/07/21 17:37:09 by dboire           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,6 +111,7 @@ Dog Dog::operator=(const Dog &other)
 	if(this != &other)
 	{
 		this->_type = other._type;
+		this->
 	}
 	return (*this);
 }

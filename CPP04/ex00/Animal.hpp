@@ -6,7 +6,7 @@
 /*   By: dboire <dboire@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 13:45:23 by dboire            #+#    #+#             */
-/*   Updated: 2024/07/11 17:15:22 by dboire           ###   ########.fr       */
+/*   Updated: 2024/07/21 16:33:31 by dboire           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@
 class Animal {
 protected : 
 	std::string _type;
-	std::string _name;
 
 public :
 	Animal();

@@ -6,7 +6,7 @@
 /*   By: dboire <dboire@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 13:45:26 by dboire            #+#    #+#             */
-/*   Updated: 2024/07/15 11:04:56 by dboire           ###   ########.fr       */
+/*   Updated: 2024/07/21 17:52:33 by dboire           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,11 +25,13 @@ Animal::~Animal()
 Animal::Animal(std::string const &type)
 {
 	this->_type = type;
+	std::cout << "Parameter constructor of animal" << std::endl;
 }
 
 Animal::Animal(const Animal &other)
 {
 	this->_type = other._type;
+	std::cout << "Copy constructor of animal" << std::endl;
 }
 
 Animal Animal::operator=(const Animal &other)
@@ -65,20 +67,18 @@ Cat::Cat() : Animal("Cat")
 	std::cout << "Default constructor of Cat" << std::endl;
 }
 
-Cat::~Cat()
-{
-	delete this->brain;
-	std::cout << "Default destructor of Cat" << std::endl;
-}
-
 Cat::Cat(std::string const &name) : Animal(name)
 {
+	this->brain = new Brain();
 	_type = "Cat";
+	std::cout << "Parameter constructor of Cat" << std::endl;
 }
 
 Cat::Cat(const Cat &other) : Animal(other)
 {
-	this->_type = other._type;
+	this->brain = new Brain();
+	_type = other._type;
+	std::cout << "Copy constructor of Cat" << std::endl;
 }
 
 Cat Cat::operator=(const Cat &other)
@@ -86,8 +86,15 @@ Cat Cat::operator=(const Cat &other)
 	if(this != &other)
 	{
 		this->_type = other._type;
+		*this->brain = *other.brain;
 	}
 	return (*this);
+}
+
+Cat::~Cat()
+{
+	delete this->brain;
+	std::cout << "Default destructor of Cat" << std::endl;
 }
 
 void Cat::makeSound() const
@@ -110,13 +117,16 @@ Dog::Dog() : Animal("Dog")
 
 Dog::Dog(std::string const &name) : Animal(name)
 {
+	this->brain = new Brain();
 	_type = "Dog";
+	std::cout << "Parameter constructor of Dog" << std::endl;
 }
 
 Dog::Dog(const Dog &other) : Animal(other)
 {
-	
+	this->brain = new Brain();
 	_type = other._type;
+	std::cout << "Copy constructor of Dog" << std::endl;
 }
 
 Dog Dog::operator=(const Dog &other)
@@ -124,6 +134,7 @@ Dog Dog::operator=(const Dog &other)
 	if(this != &other)
 	{
 		this->_type = other._type;
+		*this->brain = *other.brain;
 	}
 	return (*this);
 }

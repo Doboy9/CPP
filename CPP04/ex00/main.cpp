@@ -6,7 +6,7 @@
 /*   By: dboire <dboire@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 14:08:18 by dboire            #+#    #+#             */
-/*   Updated: 2024/07/13 13:45:17 by dboire           ###   ########.fr       */
+/*   Updated: 2024/07/21 16:31:53 by dboire           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,8 @@ int main()
 	std::cout << j->getType() << " " << std::endl;
 	std::cout << i->getType() << " " << std::endl;
 	std::cout << l->getType() << " " << std::endl;
+	std::cout << k->getType() << " " << std::endl;
+	std::cout << meta->getType() << " " << std::endl;
 	
 	i->makeSound(); //will output the cat sound!
 	j->makeSound();

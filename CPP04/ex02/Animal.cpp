@@ -6,7 +6,7 @@
 /*   By: dboire <dboire@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 13:45:26 by dboire            #+#    #+#             */
-/*   Updated: 2024/07/15 11:04:56 by dboire           ###   ########.fr       */
+/*   Updated: 2024/07/21 18:04:46 by dboire           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,24 +32,10 @@ Animal::Animal(const Animal &other)
 	this->_type = other._type;
 }
 
-Animal Animal::operator=(const Animal &other)
-{
-	if(this != &other)
-	{
-		this->_type = other._type;
-	}
-	return (*this);
-}
-
 std::string Animal::getType() const
 {
 	std::cout << "Printing type : " << _type << std::endl;
 	return (_type);
-}
-
-void Animal::makeSound() const
-{
-	std::cout << "An animal is making a sound" << std::endl;
 }
 
 Brain *Animal::get_brain() const 
@@ -144,7 +130,7 @@ Brain *Dog::get_brain() const
 	return(this->brain);
 }
 
-//Wrong Animal
+// Wrong Animal
 
 WrongAnimal::WrongAnimal()
 {
@@ -179,11 +165,6 @@ std::string WrongAnimal::getType() const
 {
 	std::cout << "Printing type : " << _type << std::endl;
 	return (_type);
-}
-
-void WrongAnimal::makeSound() const
-{
-	std::cout << "An WrongAnimal is making a sound" << std::endl;
 }
 
 // Wrong Cat
