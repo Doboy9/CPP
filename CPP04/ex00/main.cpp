@@ -6,11 +6,15 @@
 /*   By: dboire <dboire@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 14:08:18 by dboire            #+#    #+#             */
-/*   Updated: 2024/07/21 16:31:53 by dboire           ###   ########.fr       */
+/*   Updated: 2024/07/22 17:31:56 by dboire           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Animal.hpp"
+#include "Cat.hpp"
+#include "Dog.hpp"
+#include "WrongAnimal.hpp"
+#include "WrongCat.hpp"
 
 int main()
 {

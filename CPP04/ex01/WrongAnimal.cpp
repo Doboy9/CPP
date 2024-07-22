@@ -1,40 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Animal.cpp                                         :+:      :+:    :+:   */
+/*   WrongAnimal.cpp                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dboire <dboire@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/10 13:45:26 by dboire            #+#    #+#             */
-/*   Updated: 2024/07/22 17:37:06 by dboire           ###   ########.fr       */
+/*   Created: 2024/07/22 15:51:08 by dboire            #+#    #+#             */
+/*   Updated: 2024/07/22 17:36:58 by dboire           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Animal.hpp"
+#include"WrongAnimal.hpp"
 
-Animal::Animal()
+WrongAnimal::WrongAnimal()
 {
-	std::cout << "Default constructor of animal" << std::endl;
+	std::cout << "Default constructor of WrongAnimal" << std::endl;
 }
 
-Animal::~Animal()
+WrongAnimal::~WrongAnimal()
 {
-	std::cout << "Default destructor of animal" << std::endl;
+	std::cout << "Default destructor of WrongAnimal" << std::endl;
 }
 
-Animal::Animal(std::string const &type)
+WrongAnimal::WrongAnimal(std::string const &type)
 {
 	this->_type = type;
-	std::cout << "Parameter constructor of animal" << std::endl;
 }
 
-Animal::Animal(const Animal &other)
+WrongAnimal::WrongAnimal(const WrongAnimal &other)
 {
 	this->_type = other._type;
-	std::cout << "Copy constructor of animal" << std::endl;
 }
 
-Animal Animal::operator=(const Animal &other)
+WrongAnimal WrongAnimal::operator=(const WrongAnimal &other)
 {
 	if(this != &other)
 	{
@@ -43,18 +42,13 @@ Animal Animal::operator=(const Animal &other)
 	return (*this);
 }
 
-std::string Animal::getType() const
+std::string WrongAnimal::getType() const
 {
 	std::cout << "Printing type : " << _type << std::endl;
 	return (_type);
 }
 
-void Animal::makeSound() const
+void WrongAnimal::makeSound() const
 {
-	std::cout << "An animal is making a sound" << std::endl;
-}
-
-Brain *Animal::get_brain() const 
-{
-	return(NULL);
+	std::cout << "An WrongAnimal is making a sound" << std::endl;
 }

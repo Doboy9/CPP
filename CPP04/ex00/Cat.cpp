@@ -1,38 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Animal.cpp                                         :+:      :+:    :+:   */
+/*   Cat.cpp                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dboire <dboire@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/10 13:45:26 by dboire            #+#    #+#             */
-/*   Updated: 2024/07/22 15:59:07 by dboire           ###   ########.fr       */
+/*   Created: 2024/07/22 15:51:13 by dboire            #+#    #+#             */
+/*   Updated: 2024/07/22 16:57:00 by dboire           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Animal.hpp"
+#include"Animal.hpp"
+#include"Cat.hpp"
 
-Animal::Animal()
+Cat::Cat() : Animal("Cat")
 {
-	std::cout << "Default constructor of animal" << std::endl;
+	std::cout << "Default constructor of Cat" << std::endl;
 }
 
-Animal::~Animal()
+Cat::~Cat()
 {
-	std::cout << "Default destructor of animal" << std::endl;
+	std::cout << "Default destructor of Cat" << std::endl;
 }
 
-Animal::Animal(std::string const &type)
+Cat::Cat(std::string const &name) : Animal(name)
 {
-	this->_type = type;
+	_type = "Cat";
 }
 
-Animal::Animal(const Animal &other)
+Cat::Cat(const Cat &other) : Animal(other)
 {
 	this->_type = other._type;
 }
 
-Animal Animal::operator=(const Animal &other)
+Cat Cat::operator=(const Cat &other)
 {
 	if(this != &other)
 	{
@@ -41,13 +42,7 @@ Animal Animal::operator=(const Animal &other)
 	return (*this);
 }
 
-std::string Animal::getType() const
+void Cat::makeSound() const
 {
-	std::cout << "Printing type : " << _type << std::endl;
-	return (_type);
-}
-
-void Animal::makeSound() const
-{
-	std::cout << "An animal is making a sound" << std::endl;
+	std::cout << "Cat is meowing" << std::endl;
 }

@@ -6,13 +6,18 @@
 #    By: dboire <dboire@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/07/15 16:09:32 by dboire            #+#    #+#              #
-#    Updated: 2024/07/16 13:11:17 by dboire           ###   ########.fr        #
+#    Updated: 2024/07/22 18:29:33 by dboire           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = AMateria
 
 SRC =	AMateria.cpp\
+		Character.cpp\
+		Cure.cpp\
+		Ice.cpp\
+		MateriaSource.cpp\
+		RandomMateria.cpp\
 		main.cpp
 
 CXX = c++

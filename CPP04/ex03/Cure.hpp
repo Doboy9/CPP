@@ -1,37 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   AMateria.hpp                                       :+:      :+:    :+:   */
+/*   Cure.hpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dboire <dboire@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/16 13:01:50 by dboire            #+#    #+#             */
-/*   Updated: 2024/07/22 18:30:11 by dboire           ###   ########.fr       */
+/*   Created: 2024/07/22 18:23:54 by dboire            #+#    #+#             */
+/*   Updated: 2024/07/22 18:33:32 by dboire           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef AMATERIA_HPP
-# define AMATERIA_HPP
+#ifndef CURE_HPP
+# define CURE_HPP
 
-#include <string>
-#include <iostream>
-#include "ICharacter.hpp"
-
+#include"AMateria.hpp"
+#include"ICharacter.hpp"
+class AMateria;
 class ICharacter;
 
-class AMateria
-{
-protected:
+class Cure : public AMateria{
+private:
 	std::string _type;
-
 public:
-	AMateria(std::string const &type);
-	std::string const &getType() const; //Returns the materia type
-	virtual AMateria* clone() const = 0;
-	virtual void use(ICharacter &target);
-	virtual ~AMateria();
-	AMateria(AMateria const &ref);
-	AMateria &operator=(const AMateria &other);
+	Cure();
+	~Cure();
+	Cure(const Cure &other);
+	Cure	&operator=(const Cure &other);
+	
+	void use(ICharacter& target);
+	Cure *clone() const;
+	std::string const &get_type() const;
 };
 
 #endif

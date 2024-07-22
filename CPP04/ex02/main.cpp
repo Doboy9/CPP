@@ -6,11 +6,16 @@
 /*   By: dboire <dboire@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 14:08:18 by dboire            #+#    #+#             */
-/*   Updated: 2024/07/21 17:53:35 by dboire           ###   ########.fr       */
+/*   Updated: 2024/07/22 17:58:03 by dboire           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Animal.hpp"
+#include "Cat.hpp"
+#include "Dog.hpp"
+#include "WrongAnimal.hpp"
+#include "WrongCat.hpp"
+#include "Brain.hpp"
 
 int main()
 {
@@ -32,6 +37,11 @@ int main()
 	// wrong_array[0] = new WrongCat();
 	// wrong_array[1] = new WrongCat();
 	
+	
+	Dog basic;
+	{
+		Dog tmp = basic;
+	}
 	
 	// wrongcat_brain[0] = wrong_array[0]->get_brain();
 	

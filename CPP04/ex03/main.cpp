@@ -6,11 +6,16 @@
 /*   By: dboire <dboire@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 13:01:11 by dboire            #+#    #+#             */
-/*   Updated: 2024/07/21 16:12:22 by dboire           ###   ########.fr       */
+/*   Updated: 2024/07/22 18:38:38 by dboire           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "AMateria.hpp"
+#include "Character.hpp"
+#include "Cure.hpp"
+#include "Ice.hpp"
+#include "MateriaSource.hpp"
+#include "RandomMateria.hpp"
 
 int main()
 {
@@ -18,7 +23,7 @@ int main()
 	src->learnMateria(new Ice());
 	src->learnMateria(new Cure());
 	src->learnMateria(new Ice());
-	src->learnMateria(new Random_Materia());
+	src->learnMateria(new RandomMateria());
 	src->learnMateria(new Cure());
 	src->learnMateria(new Cure());
 	src->learnMateria(new Cure());
@@ -48,7 +53,7 @@ int main()
 	
 	std::cout << std::endl;
 	me->use(1, *bob);
-	src->learnMateria(new Random_Materia());
+	src->learnMateria(new RandomMateria());
 	tmp = src->createMateria("random materia");
 	me->equip(tmp);
 	me->use(1, *bob);

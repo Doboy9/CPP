@@ -6,13 +6,17 @@
 #    By: dboire <dboire@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/07/10 13:44:44 by dboire            #+#    #+#              #
-#    Updated: 2024/07/10 14:09:00 by dboire           ###   ########.fr        #
+#    Updated: 2024/07/22 16:56:07 by dboire           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = animal
 
 SRC =	Animal.cpp\
+		Cat.cpp\
+		Dog.cpp\
+		WrongAnimal.cpp\
+		WrongCat.cpp\
 		main.cpp
 
 CXX = c++

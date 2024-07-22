@@ -1,38 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Animal.cpp                                         :+:      :+:    :+:   */
+/*   WrongCat.cpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dboire <dboire@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/10 13:45:26 by dboire            #+#    #+#             */
-/*   Updated: 2024/07/22 15:59:07 by dboire           ###   ########.fr       */
+/*   Created: 2024/07/22 15:51:05 by dboire            #+#    #+#             */
+/*   Updated: 2024/07/22 17:36:24 by dboire           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Animal.hpp"
+#include "WrongCat.hpp"
 
-Animal::Animal()
+WrongCat::WrongCat() : WrongAnimal("WrongCat")
 {
-	std::cout << "Default constructor of animal" << std::endl;
+	std::cout << "Default constructor of WrongCat" << std::endl;
 }
 
-Animal::~Animal()
+WrongCat::~WrongCat()
 {
-	std::cout << "Default destructor of animal" << std::endl;
+	std::cout << "Default destructor of WrongCat" << std::endl;
 }
 
-Animal::Animal(std::string const &type)
+WrongCat::WrongCat(std::string const &name) : WrongAnimal(name)
 {
-	this->_type = type;
+	_type = "WrongCat";
 }
 
-Animal::Animal(const Animal &other)
+WrongCat::WrongCat(const WrongCat &other) : WrongAnimal(other)
 {
 	this->_type = other._type;
 }
 
-Animal Animal::operator=(const Animal &other)
+WrongCat WrongCat::operator=(const WrongCat &other)
 {
 	if(this != &other)
 	{
@@ -41,13 +42,7 @@ Animal Animal::operator=(const Animal &other)
 	return (*this);
 }
 
-std::string Animal::getType() const
+void WrongCat::makeSound() const
 {
-	std::cout << "Printing type : " << _type << std::endl;
-	return (_type);
-}
-
-void Animal::makeSound() const
-{
-	std::cout << "An animal is making a sound" << std::endl;
+	std::cout << "WrongCat is talking in human language" << std::endl;
 }
