@@ -6,7 +6,7 @@
 /*   By: dboire <dboire@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 15:51:05 by dboire            #+#    #+#             */
-/*   Updated: 2024/07/22 16:54:58 by dboire           ###   ########.fr       */
+/*   Updated: 2024/07/23 13:16:24 by dboire           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,11 +26,14 @@ WrongCat::~WrongCat()
 WrongCat::WrongCat(std::string const &name) : WrongAnimal(name)
 {
 	_type = "WrongCat";
+	std::cout << "Parameter constructor of WrongCat" << std::endl;
 }
 
 WrongCat::WrongCat(const WrongCat &other) : WrongAnimal(other)
 {
 	this->_type = other._type;
+	std::cout << "Copy constructor of WrongCat" << std::endl;
+
 }
 
 WrongCat WrongCat::operator=(const WrongCat &other)

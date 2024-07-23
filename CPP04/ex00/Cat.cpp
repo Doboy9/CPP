@@ -6,7 +6,7 @@
 /*   By: dboire <dboire@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 15:51:13 by dboire            #+#    #+#             */
-/*   Updated: 2024/07/22 16:57:00 by dboire           ###   ########.fr       */
+/*   Updated: 2024/07/23 13:14:47 by dboire           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,11 +26,13 @@ Cat::~Cat()
 Cat::Cat(std::string const &name) : Animal(name)
 {
 	_type = "Cat";
+	std::cout << "Parameter constructor of Cat" << std::endl;
 }
 
 Cat::Cat(const Cat &other) : Animal(other)
 {
 	this->_type = other._type;
+	std::cout << "Copy constructor of Cat" << std::endl;
 }
 
 Cat Cat::operator=(const Cat &other)

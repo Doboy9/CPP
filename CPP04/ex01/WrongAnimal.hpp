@@ -6,17 +6,20 @@
 /*   By: dboire <dboire@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 15:49:47 by dboire            #+#    #+#             */
-/*   Updated: 2024/07/22 17:36:36 by dboire           ###   ########.fr       */
+/*   Updated: 2024/07/23 12:20:47 by dboire           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef WRONGANIMAL_HPP
 # define WRONGANIMAL_HPP
 
+#include <iostream>
+
+class Brain;
+
 class WrongAnimal {
 protected : 
 	std::string _type;
-	std::string _name;
 
 public :
 	WrongAnimal();
@@ -24,8 +27,9 @@ public :
 	WrongAnimal(std::string const &type);
 	WrongAnimal(const WrongAnimal &other);
 	WrongAnimal	operator=(const WrongAnimal &other);
-	
+
 	virtual void makeSound() const;
+	virtual Brain *get_brain() const;
 	std::string getType() const;
 };
 

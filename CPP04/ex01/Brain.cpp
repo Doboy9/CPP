@@ -6,11 +6,12 @@
 /*   By: dboire <dboire@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 17:35:25 by dboire            #+#    #+#             */
-/*   Updated: 2024/07/22 17:36:10 by dboire           ###   ########.fr       */
+/*   Updated: 2024/07/23 13:17:25 by dboire           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include"Animal.hpp"
+#include "WrongAnimal.hpp"
 #include"Brain.hpp"
 
 Brain::Brain() : ideas()
@@ -26,6 +27,7 @@ Brain::~Brain()
 Brain::Brain(const Brain &other)
 {
 	*this = other;
+	std::cout << "Copy constructor of Brain" << std::endl;
 }
 
 Brain Brain::operator=(const Brain &other)

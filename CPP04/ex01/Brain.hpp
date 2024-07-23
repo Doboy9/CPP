@@ -6,7 +6,7 @@
 /*   By: dboire <dboire@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 17:35:19 by dboire            #+#    #+#             */
-/*   Updated: 2024/07/22 17:39:41 by dboire           ###   ########.fr       */
+/*   Updated: 2024/07/23 12:16:13 by dboire           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define BRAIN_HPP
 
 #include "Animal.hpp"
+#include "WrongAnimal.hpp"
 
 class Animal;
 

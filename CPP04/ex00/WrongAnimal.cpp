@@ -6,7 +6,7 @@
 /*   By: dboire <dboire@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 15:51:08 by dboire            #+#    #+#             */
-/*   Updated: 2024/07/22 16:53:42 by dboire           ###   ########.fr       */
+/*   Updated: 2024/07/23 13:15:53 by dboire           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,11 +25,13 @@ WrongAnimal::~WrongAnimal()
 
 WrongAnimal::WrongAnimal(std::string const &type)
 {
+	std::cout << "Parameter constructor of WrongAnimal" << std::endl;	
 	this->_type = type;
 }
 
 WrongAnimal::WrongAnimal(const WrongAnimal &other)
 {
+	std::cout << "Copy constructor of WrongAnimal" << std::endl;
 	this->_type = other._type;
 }
 

@@ -6,7 +6,7 @@
 /*   By: dboire <dboire@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 13:45:26 by dboire            #+#    #+#             */
-/*   Updated: 2024/07/22 15:59:07 by dboire           ###   ########.fr       */
+/*   Updated: 2024/07/23 13:14:17 by dboire           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,11 +25,13 @@ Animal::~Animal()
 Animal::Animal(std::string const &type)
 {
 	this->_type = type;
+	std::cout << "Parameter constructor of animal" << std::endl;
 }
 
 Animal::Animal(const Animal &other)
 {
 	this->_type = other._type;
+	std::cout << "Copy constructor of animal" << std::endl;
 }
 
 Animal Animal::operator=(const Animal &other)

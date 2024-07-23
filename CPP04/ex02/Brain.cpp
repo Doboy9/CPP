@@ -6,7 +6,7 @@
 /*   By: dboire <dboire@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 17:35:25 by dboire            #+#    #+#             */
-/*   Updated: 2024/07/22 18:24:51 by dboire           ###   ########.fr       */
+/*   Updated: 2024/07/23 13:11:56 by dboire           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ Brain::~Brain()
 Brain::Brain(const Brain &other)
 {
 	*this = other;
+	std::cout << "Copy constructor of Brain" << std::endl;
 }
 
 Brain Brain::operator=(const Brain &other)

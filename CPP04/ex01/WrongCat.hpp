@@ -6,7 +6,7 @@
 /*   By: dboire <dboire@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 15:50:32 by dboire            #+#    #+#             */
-/*   Updated: 2024/07/22 17:36:45 by dboire           ###   ########.fr       */
+/*   Updated: 2024/07/23 12:17:58 by dboire           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,15 @@
 # define WRONGCAT_HPP
 
 #include "WrongAnimal.hpp"
+#include "Brain.hpp"
 
 class WrongAnimal;
+class Brain;
 
 class WrongCat : public WrongAnimal
 {
 private: 
+	Brain *brain;
 
 public:
 	WrongCat();
@@ -27,7 +30,8 @@ public:
 	WrongCat(const WrongCat &other);
 	WrongCat	operator=(const WrongCat &other);
 	~WrongCat();
-	
+
+	Brain *get_brain() const;
 	void makeSound() const;
 };
 
