@@ -6,7 +6,7 @@
 /*   By: dboire <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/21 10:31:20 by dboire            #+#    #+#             */
-/*   Updated: 2024/07/29 18:15:11 by dboire           ###   ########.fr       */
+/*   Updated: 2024/07/29 22:59:07 by dboire           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,11 @@ int main()
 {
 	try 
 	{
+		Form formA("FormA", 10, 20);
 		Bureaucrat john("John", 1);
 		std::cout << john << std::endl;
+		std::cout << formA << std::endl;
+		john.signForm(formA);
 		john.increment_grade(john.get_grade());
 		Bureaucrat high("TooHigh", -1);
 	} 

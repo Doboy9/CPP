@@ -6,7 +6,7 @@
 /*   By: dboire <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/21 10:31:16 by dboire            #+#    #+#             */
-/*   Updated: 2024/07/29 18:50:01 by dboire           ###   ########.fr       */
+/*   Updated: 2024/07/29 22:57:28 by dboire           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,8 +72,27 @@ int Bureaucrat::get_grade() const
 	return(this->_grade);
 }
 
+
+
 std::ostream& operator<<(std::ostream &out, const Bureaucrat &b)
 {
 	out << b.get_name() << ", bureaucrat grade " << b.get_grade() << ".";
 	return(out);
+}
+
+
+void Bureaucrat::signForm(Form &f)
+{
+	try
+	{
+		f.beSigned(*this);
+		std::cout << this->get_name() << " signed " 
+		<< f.get_name() << std::endl;
+	}
+	catch (const Form::GradeTooLowException &e)
+	{
+		std::cout << this->get_name() << " couldn’t sign "
+		<< f.get_name() << " because "
+		<< "grade is too low." << std::endl;
+	}
 }

@@ -6,13 +6,14 @@
 #    By: dboire <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/07/21 10:31:23 by dboire            #+#    #+#              #
-#    Updated: 2024/07/29 18:15:09 by dboire           ###   ########.fr        #
+#    Updated: 2024/07/29 15:01:20 by dboire           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = Bureaucrat
 
 SRC =	Bureaucrat.cpp\
+		Form.cpp\
 		main.cpp
 
 CXX = c++

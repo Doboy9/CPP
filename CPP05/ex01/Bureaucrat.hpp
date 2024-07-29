@@ -6,15 +6,18 @@
 /*   By: dboire <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/21 10:31:18 by dboire            #+#    #+#             */
-/*   Updated: 2024/07/29 17:12:16 by dboire           ###   ########.fr       */
+/*   Updated: 2024/07/29 22:56:51 by dboire           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef BUREAUCRAT_HPP
 # define BUREAUCRAT_HPP
 
+#include "Form.hpp"
 #include <iostream>
 #include <exception>
+
+class Form;
 
 class Bureaucrat
 {
@@ -52,6 +55,7 @@ public:
 	//Getters
 	const std::string &get_name() const;
 	int get_grade() const;
+	void signForm(Form &f);
 };
 
 std::ostream& operator<<(std::ostream& os, const Bureaucrat& b);
