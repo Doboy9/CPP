@@ -32,6 +32,8 @@ public:
 	//Canonical forms
 	~Form();
 	Form(const std::string &name, int grade_signing, int grade_executing);
+	Form(const Form &other);
+	Form	&operator=(const Form &other);
 
 	//Exceptions class
 	class GradeTooHighException : public std::exception

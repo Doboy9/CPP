@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Bureaucrat.cpp                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dboire <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: dboire <dboire@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/21 10:31:16 by dboire            #+#    #+#             */
-/*   Updated: 2024/07/30 10:55:23 by dboire           ###   ########.fr       */
+/*   Updated: 2024/08/01 14:21:33 by dboire           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ std::ostream& operator<<(std::ostream &out, const Bureaucrat &b)
 }
 
 
-void Bureaucrat::signForm(Form &f)
+void Bureaucrat::signForm(AForm &f)
 {
 	try
 	{
@@ -89,10 +89,23 @@ void Bureaucrat::signForm(Form &f)
 		std::cout << this->get_name() << " signed " 
 		<< f.get_name() << std::endl;
 	}
-	catch (const Form::GradeTooLowException &e)
+	catch (const AForm::GradeTooLowException &e)
 	{
-		std::cout << this->get_name() << " couldn’t sign "
+		std::cout << this->get_name() << " couldn't sign "
 		<< f.get_name() << " because "
 		<< "grade is too low." << std::endl;
 	}
+}
+
+void Bureaucrat::executeForm(AForm const &f) const
+{
+    try
+    {
+        f.execute(*this);
+        std::cout << this->get_name() << " executed " << f.get_name() << std::endl;
+    }
+    catch (const std::exception &e)
+    {
+        std::cout << this->get_name() << " couldn’t execute " << f.get_name() << " because " << e.what() << std::endl;
+    }
 }

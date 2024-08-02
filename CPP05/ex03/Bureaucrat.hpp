@@ -6,26 +6,26 @@
 /*   By: dboire <dboire@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/21 10:31:18 by dboire            #+#    #+#             */
-/*   Updated: 2024/07/30 15:28:45 by dboire           ###   ########.fr       */
+/*   Updated: 2024/08/01 16:58:44 by dboire           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef BUREAUCRAT_HPP
 # define BUREAUCRAT_HPP
 
-#include "Form.hpp"
+#include "AForm.hpp"
 #include <iostream>
 #include <exception>
 
-class Form;
+class AForm;
 
 class Bureaucrat
 {
 private:
 	const std::string	_name;
 	int					_grade;
-	Bureaucrat();
 public:
+	Bureaucrat();
 	//Canonical
 	~Bureaucrat();
 	Bureaucrat(const std::string &name, int grade);
@@ -55,7 +55,9 @@ public:
 	//Getters
 	const std::string &get_name() const;
 	int get_grade() const;
-	void signForm(Form &f);
+	void signForm(AForm &f);
+
+	void executeForm(AForm const &f) const;
 };
 
 std::ostream& operator<<(std::ostream& os, const Bureaucrat& b);

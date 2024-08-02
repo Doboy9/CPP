@@ -3,29 +3,40 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dboire <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: dboire <dboire@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/21 10:31:20 by dboire            #+#    #+#             */
-/*   Updated: 2024/07/30 10:51:43 by dboire           ###   ########.fr       */
+/*   Updated: 2024/08/01 22:09:03 by dboire           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include"Bureaucrat.hpp"
+#include "Bureaucrat.hpp"
+#include "AForm.hpp"
+#include "Intern.hpp"
+#include "PresidentialPardonForm.hpp"
+#include "RobotomyRequestForm.hpp"
+#include "ShrubberyCreationForm.hpp"
 
 int main()
 {
+
+	{
+		Bureaucrat john("John", 1);
+		Intern someRandomIntern;
+		AForm* rrf;
+		rrf = someRandomIntern.makeForm("pesidential pardon", "Bender");
+		std::cout << *rrf << std::endl;
+		rrf->beSigned(john);
+		rrf->execute(john);
+	}
+
 	try 
 	{
-		Form formA("FormA", 10, 20);
 		Bureaucrat john("John", 1);
 		std::cout << john << std::endl;
-		std::cout << formA << std::endl;
-		std::cout << formA.get_signature() << std::endl;
-		john.signForm(formA);
-		std::cout << formA.get_signature() << std::endl;
-		Form HighForm("HighForm", -1, 20);
-		john.increment_grade(john.get_grade());
-		Bureaucrat high("TooHigh", -1);
+		PresidentialPardonForm form("PPF");
+		//form.beSigned(john);
+		form.execute(john);
 	} 
 	catch (const Bureaucrat::GradeTooHighException& e)
 	{
@@ -35,15 +46,19 @@ int main()
 	{
 		std::cerr << e.what() << std::endl;
 	}
-	catch (const Form::GradeTooHighException& e)
+	catch (const AForm::GradeTooHighException& e)
 	{
 		std::cerr << e.what() << std::endl;
 	} 
-	catch (const Form::GradeTooLowException& e)
+	catch (const AForm::GradeTooLowException& e)
 	{
 		std::cerr << e.what() << std::endl;
 	}
-
+	catch (const AForm::FormNotSignedException& e)
+	{
+		std::cerr << e.what() << std::endl;
+	}
+	
 	try
 	{
 	Bureaucrat low("TooLow", 151);
