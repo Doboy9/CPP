@@ -6,7 +6,7 @@
 /*   By: dboire <dboire@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/02 14:44:53 by dboire            #+#    #+#             */
-/*   Updated: 2024/08/02 14:44:53 by dboire           ###   ########.fr       */
+/*   Updated: 2024/08/05 19:29:12 by dboire           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,8 @@
 
 int main() 
 {
-    std::string numStr = "65"; // ASCII value for 'A'
-    ScalarConverter::convert(numStr);
-    return 0;
+	std::string numStr = "p";
+
+	ScalarConverter::convert(numStr);
+	return 0;
 }
