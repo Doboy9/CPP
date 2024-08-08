@@ -1,24 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   Serialize.hpp                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dboire <dboire@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/02 14:44:53 by dboire            #+#    #+#             */
-/*   Updated: 2024/08/07 09:36:16 by dboire           ###   ########.fr       */
+/*   Created: 2024/08/08 09:06:04 by dboire            #+#    #+#             */
+/*   Updated: 2024/08/08 10:31:00 by dboire           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Scalar.hpp"
+#ifndef SERIALIZE_HPP
+# define SERIALIZE_HPP
 
-int main(int ac, char **av) 
+#include<iostream>
+#include<stdint.h>
+
+struct Data
 {
-	if(ac == 2)
-	{
-		std::string numStr = av[1];
+	int num;
+};
 
-		ScalarConverter::convert(numStr);
-		return 0;
-	}
-}
+class Serializer
+{
+private:
+	Serializer();
+	~Serializer();
+	Serializer(const Serializer&);
+	Serializer &operator=(const Serializer&);
+
+public:
+	static uintptr_t serialize(Data* ptr);
+
+	static Data* deserialize(uintptr_t raw);
+
+};
+
+
+
+#endif

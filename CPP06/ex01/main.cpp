@@ -5,20 +5,24 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: dboire <dboire@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/02 14:44:53 by dboire            #+#    #+#             */
-/*   Updated: 2024/08/07 09:36:16 by dboire           ###   ########.fr       */
+/*   Created: 2024/08/08 09:34:22 by dboire            #+#    #+#             */
+/*   Updated: 2024/08/08 10:34:10 by dboire           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Scalar.hpp"
+#include "Serialize.hpp"
 
-int main(int ac, char **av) 
+int main()
 {
-	if(ac == 2)
-	{
-		std::string numStr = av[1];
-
-		ScalarConverter::convert(numStr);
-		return 0;
-	}
+	Data data;
+	uintptr_t raw;
+	Data* deserialized;
+	
+	data.num = 100000000;
+	
+	raw = Serializer::serialize(&data);
+	std::cout << "Serialized value: " << raw << std::endl;
+	
+	deserialized = Serializer::deserialize(raw);
+	std::cout << "Deserialized value: " << deserialized << std::endl;
 }
