@@ -6,7 +6,7 @@
 /*   By: dboire <dboire@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/21 10:31:20 by dboire            #+#    #+#             */
-/*   Updated: 2024/08/01 22:09:03 by dboire           ###   ########.fr       */
+/*   Updated: 2024/08/31 15:45:27 by dboire           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +24,14 @@ int main()
 		Bureaucrat john("John", 1);
 		Intern someRandomIntern;
 		AForm* rrf;
-		rrf = someRandomIntern.makeForm("pesidential pardon", "Bender");
-		std::cout << *rrf << std::endl;
-		rrf->beSigned(john);
-		rrf->execute(john);
+		rrf = someRandomIntern.makeForm("presidential pardon", "Bender");
+		if(rrf != NULL)
+		{
+			std::cout << *rrf << std::endl;
+			rrf->beSigned(john);
+			rrf->execute(john);
+			delete (rrf);
+		}
 	}
 
 	try 

@@ -12,6 +12,8 @@
 
 #include"AForm.hpp"
 
+AForm::AForm() : _name("default"), _grade_signing(0), _grade_executing(0){};
+
 AForm::AForm(const std::string &name, int grade_signing, int grade_executing) : _name(name), _grade_signing(grade_signing), _grade_executing(grade_executing)
 {
 	_signed = false;

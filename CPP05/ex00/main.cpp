@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dboire <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: dboire <dboire@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/21 10:31:20 by dboire            #+#    #+#             */
-/*   Updated: 2024/07/29 18:15:11 by dboire           ###   ########.fr       */
+/*   Updated: 2024/08/31 14:37:34 by dboire           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@ int main()
 		Bureaucrat john("John", 1);
 		std::cout << john << std::endl;
 		john.increment_grade(john.get_grade());
-		Bureaucrat high("TooHigh", -1);
 	} 
 	catch (const Bureaucrat::GradeTooHighException& e)
 	{
@@ -32,7 +31,7 @@ int main()
 
 	try
 	{
-	Bureaucrat low("TooLow", 151);
+		Bureaucrat low("TooLow", 151);
 	}
 	catch (const Bureaucrat::GradeTooHighException& e)
 	{
@@ -50,6 +49,7 @@ int main()
 		Bureaucrat janeAssign = jane;
 		std::cout << janeCopy << std::endl;
 		std::cout << janeAssign << std::endl;
+		Bureaucrat high("TooHigh", -1);
 	}
 	catch (const Bureaucrat::GradeTooHighException& e)
 	{

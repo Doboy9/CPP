@@ -22,7 +22,7 @@ Form::Form(const std::string &name, int grade_signing, int grade_executing) : _n
 
 Form::~Form(){};
 
-Form::Form(const Form &other) : _name(other._name), _grade_executing(other._grade_executing), _grade_signing(other._grade_signing)
+Form::Form(const Form &other) : _name(other._name), _grade_signing(other._grade_signing), _grade_executing(other._grade_executing)
 {
 	_signed = other.get_signature();
 }

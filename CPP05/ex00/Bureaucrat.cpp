@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Bureaucrat.cpp                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dboire <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: dboire <dboire@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/21 10:31:16 by dboire            #+#    #+#             */
-/*   Updated: 2024/07/29 18:50:01 by dboire           ###   ########.fr       */
+/*   Updated: 2024/08/31 14:33:46 by dboire           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ Bureaucrat::Bureaucrat(const std::string &name, int grade) : _name(name), _grade
 
 Bureaucrat::Bureaucrat(const Bureaucrat &other) : _name(other._name), _grade(other._grade){};
 
-Bureaucrat	&Bureaucrat::operator=(const Bureaucrat &other)
+Bureaucrat	&Bureaucrat::operator=(const Bureaucrat & other)
 {
 	this->_grade = other._grade;
 	return(*this);

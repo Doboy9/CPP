@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Form.hpp                                           :+:      :+:    :+:   */
+/*   AForm.hpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dboire <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: dboire <dboire@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/29 15:00:38 by dboire            #+#    #+#             */
-/*   Updated: 2024/07/29 15:00:38 by dboire           ###   ########.fr       */
+/*   Updated: 2024/08/31 15:33:05 by dboire           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,12 +27,12 @@ private:
 	bool				_signed;
 	const int			_grade_signing;
 	const int			_grade_executing;
-	AForm();
 
 public:
     
 	//Canonical forms
-	~AForm();
+	AForm();
+	virtual ~AForm();
 	AForm(const std::string &name, int grade_signing, int grade_executing);
 	AForm(const AForm &other);
 	AForm	&operator=(const AForm &other);

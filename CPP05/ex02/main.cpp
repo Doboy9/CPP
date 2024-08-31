@@ -6,7 +6,7 @@
 /*   By: dboire <dboire@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/21 10:31:20 by dboire            #+#    #+#             */
-/*   Updated: 2024/08/01 17:58:41 by dboire           ###   ########.fr       */
+/*   Updated: 2024/08/31 15:11:55 by dboire           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,17 @@ int main()
 		std::cout << john << std::endl;
 		PresidentialPardonForm form("PPF");
 		std::cout << form << std::endl;
-		//form.beSigned(john);
+		RobotomyRequestForm RRF("Someone");
+		std::cout << RRF << std::endl;
+		ShrubberyCreationForm SCF("SCF");
+		std::cout << SCF << std::endl;
+		// RRF.beSigned(john);
+		// RRF.execute(john);
+		// SCF.beSigned(john);
+		// SCF.execute(john);
+		form.beSigned(john);
 		form.execute(john);
+		
 	} 
 	catch (const Bureaucrat::GradeTooHighException& e)
 	{

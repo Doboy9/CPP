@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dboire <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: dboire <dboire@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/21 10:31:20 by dboire            #+#    #+#             */
-/*   Updated: 2024/07/30 10:51:43 by dboire           ###   ########.fr       */
+/*   Updated: 2024/08/31 14:41:28 by dboire           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,6 @@ int main()
 		std::cout << formA.get_signature() << std::endl;
 		Form HighForm("HighForm", -1, 20);
 		john.increment_grade(john.get_grade());
-		Bureaucrat high("TooHigh", -1);
 	} 
 	catch (const Bureaucrat::GradeTooHighException& e)
 	{
@@ -64,6 +63,7 @@ int main()
 		Bureaucrat janeAssign = jane;
 		std::cout << janeCopy << std::endl;
 		std::cout << janeAssign << std::endl;
+		Bureaucrat high("TooHigh", -1);
 	}
 	catch (const Bureaucrat::GradeTooHighException& e)
 	{
