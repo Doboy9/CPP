@@ -6,7 +6,7 @@
 /*   By: dboire <dboire@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/11 13:11:32 by dboire            #+#    #+#             */
-/*   Updated: 2024/08/12 16:49:28 by dboire           ###   ########.fr       */
+/*   Updated: 2024/08/31 18:18:53 by dboire           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,10 @@ Array<T>::~Array()
 }
 
 template <typename T>
-Array<T>::Array(unsigned int n) : data(new(T[n]())), size(n){}; // Parameter constructor
+Array<T>::Array(unsigned int n) : data(new T[n]()), size(n){}; // Parameter constructor
 
 template <typename T>
-Array<T>::Array(const Array &other) : data(newT[other.size]()), size(other.size)
+Array<T>::Array(const Array &other) : data(new T[other.size]()), size(other.size)
 {
 	for(unsigned int i = 0; i < size; i++)
 		data[i] = other.data[i];
@@ -45,7 +45,7 @@ Array<T> &Array<T>::operator=(const Array &other)
 }
 
 template <typename T>
-const T &Array<T>::operator[](unsigned int index) const
+T &Array<T>::operator[](unsigned int index)
 {
 	if(index >= size)
 	{

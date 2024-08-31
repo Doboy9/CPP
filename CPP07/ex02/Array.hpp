@@ -6,7 +6,7 @@
 /*   By: dboire <dboire@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/11 13:11:26 by dboire            #+#    #+#             */
-/*   Updated: 2024/08/12 14:48:23 by dboire           ###   ########.fr       */
+/*   Updated: 2024/08/31 18:18:42 by dboire           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 # define ARRAY_HPP
 
 #include <iostream>
-#include"Array.tpp"
 
 template<typename T>
 class Array
@@ -29,9 +28,9 @@ public:
 	~Array();
 	Array(const Array &other);
 	Array &operator=(const Array &other);
-	const T &operator[](unsigned int index) const;
-}
+	T &operator[](unsigned int index);
+};
 
-
+#include"Array.tpp"
 
 #endif
