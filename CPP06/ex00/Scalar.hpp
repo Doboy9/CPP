@@ -6,7 +6,7 @@
 /*   By: dboire <dboire@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/02 14:32:39 by dboire            #+#    #+#             */
-/*   Updated: 2024/08/06 14:09:19 by dboire           ###   ########.fr       */
+/*   Updated: 2024/09/06 14:11:23 by dboire           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ private:
 	~ScalarConverter();
 public:
 
-	static void convert(const std::string &arg);
+	static void convert(std::string &arg);
 
 };
 

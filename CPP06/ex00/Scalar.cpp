@@ -6,7 +6,7 @@
 /*   By: dboire <dboire@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/02 14:49:29 by dboire            #+#    #+#             */
-/*   Updated: 2024/08/07 09:56:36 by dboire           ###   ########.fr       */
+/*   Updated: 2024/09/06 14:11:50 by dboire           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,7 @@ void ScalarConverter::convert(const std::string &arg)
 		std::cout << "int: " << i << std::endl 
 		<< "float: " << fnum << "f" << std::endl
 		<< "double: " << dnum << std::endl;
+		return ;
 	}
 	if(std::isdigit(arg[0]) && !std::strchr(arg.c_str(), '.') && arg[arg.length() - 1] != 'f')
 	{
@@ -85,6 +86,7 @@ void ScalarConverter::convert(const std::string &arg)
 		std::cout << "int: " << i << std::endl 
 		<< "float: " << fnum << "f" << std::endl
 		<< "double: " << dnum << std::endl;
+		return ;
 	}
 	if(std::isdigit(arg[0]) && std::strchr(arg.c_str(), '.') && arg[arg.length() - 1] == 'f') // Is a float
 	{
@@ -106,8 +108,8 @@ void ScalarConverter::convert(const std::string &arg)
 		std::cout << "int: " << i << std::endl 
 		<< "float: " << fnum << "f" << std::endl
 		<< "double: " << dnum << std::endl;
+		return ;
 	}
-
 	else if(std::isdigit(arg[0]) && std::strchr(arg.c_str(), '.') && !std::strchr(arg.c_str(), 'f')) // Is a double
 	{
 		char *end;
@@ -127,9 +129,9 @@ void ScalarConverter::convert(const std::string &arg)
 		std::cout << "int: " << i << std::endl 
 		<< "float: " << fnum << "f" << std::endl
 		<< "double: " << dnum << std::endl;
+		return ;
 	}
 	else
-	{
 		std::cout << "Wrong parameters" << std::endl;
-	}
+	return ;
 }
