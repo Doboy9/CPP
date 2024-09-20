@@ -16,6 +16,8 @@
 #include<iostream>
 #include <fstream>
 #include <map>
+#include <cstdlib>
+#include <sstream>
 
 class BitcoinExchange
 {
@@ -26,14 +28,17 @@ public:
 	BitcoinExchange& operator=(const BitcoinExchange &src);
 	BitcoinExchange(const BitcoinExchange& other);
 	int parsing(std::ifstream &input, std::ifstream &data);
+	void exec();
 
 private:
-	std::map<std::string, int> _input;
-	std::map<std::string, int> _data;
-	int parsinginput(std::ifstream &input);
-	int parsingdata(std::ifstream &data);
-	void splitLine(const std::string &line, std::string &date, double &value);
-	void exec(std::ifstream &file);
+	std::map<std::string, double> _input;
+	std::map<std::string, double> _data;
+
+	int mappinginput(std::ifstream &input);
+	int mappingdata(std::ifstream &data);
+
+	int splitdata(const std::string &line, std::string &date, double &value);
+	int splitinput(const std::string &line, std::string &date, double &value);
 };
 
 

@@ -14,14 +14,16 @@
 
 int main(int ac, char **av)
 {
+	(void)av;
 	if(ac == 2)
 	{
-		std::ifstream input("input.txt");
+		std::ifstream input(av[1]);
 		std::ifstream data("data.csv");
 		if(input.is_open() && data.is_open())
 		{
 			BitcoinExchange Bitcoin;
-			Bitcoin.parsing(input, data);
+			Bitcoin.parsing(data, input);
+			Bitcoin.exec();
 			input.close();
 			data.close();
 		}
