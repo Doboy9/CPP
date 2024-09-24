@@ -6,11 +6,11 @@
 #    By: dboire <dboire@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/08/08 10:36:26 by dboire            #+#    #+#              #
-#    Updated: 2024/08/08 15:24:23 by dboire           ###   ########.fr        #
+#    Updated: 2024/09/06 13:43:57 by dboire           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = Serialize
+NAME = Identity
 
 SRC =	main.cpp\
 		Identity.cpp

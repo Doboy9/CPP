@@ -6,7 +6,7 @@
 /*   By: dboire <dboire@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/02 14:49:29 by dboire            #+#    #+#             */
-/*   Updated: 2024/09/06 14:11:50 by dboire           ###   ########.fr       */
+/*   Updated: 2024/09/06 14:23:02 by dboire           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ void ScalarConverter::convert(const std::string &arg)
 		<< "double: " << dnum << std::endl;
 		return ;
 	}
-	if(std::isdigit(arg[0]) && !std::strchr(arg.c_str(), '.') && arg[arg.length() - 1] != 'f')
+	if(std::isdigit(arg[0]) && arg.find('.') == std::string::npos && arg.find_first_not_of("0123456789") == std::string::npos)
 	{
 		char *end;
 		char cchar;
@@ -88,7 +88,7 @@ void ScalarConverter::convert(const std::string &arg)
 		<< "double: " << dnum << std::endl;
 		return ;
 	}
-	if(std::isdigit(arg[0]) && std::strchr(arg.c_str(), '.') && arg[arg.length() - 1] == 'f') // Is a float
+	if(std::isdigit(arg[0]) && arg.find('.') != std::string::npos && arg[arg.length() - 1] == 'f' && arg.find_first_not_of("0123456789f.") == std::string::npos) // Is a float
 	{
 		char *end;
 		char cchar;
@@ -110,7 +110,7 @@ void ScalarConverter::convert(const std::string &arg)
 		<< "double: " << dnum << std::endl;
 		return ;
 	}
-	else if(std::isdigit(arg[0]) && std::strchr(arg.c_str(), '.') && !std::strchr(arg.c_str(), 'f')) // Is a double
+	else if(std::isdigit(arg[0]) && arg.find('.') != std::string::npos && arg.find_first_not_of("0123456789.") == std::string::npos) // Is a double
 	{
 		char *end;
 		char cchar;
@@ -131,7 +131,6 @@ void ScalarConverter::convert(const std::string &arg)
 		<< "double: " << dnum << std::endl;
 		return ;
 	}
-	else
-		std::cout << "Wrong parameters" << std::endl;
+	std::cout << "Wrong parameters" << std::endl;
 	return ;
 }
