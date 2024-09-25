@@ -6,7 +6,7 @@
 /*   By: dboire <dboire@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/02 14:32:39 by dboire            #+#    #+#             */
-/*   Updated: 2024/09/06 14:13:07 by dboire           ###   ########.fr       */
+/*   Updated: 2024/09/25 15:46:28 by dboire           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,8 @@ class ScalarConverter
 private:
 	ScalarConverter();
 	~ScalarConverter();
+	ScalarConverter(const ScalarConverter &other);
+	ScalarConverter &operator=(const ScalarConverter &other);
 public:
 
 	static void convert(const std::string &arg);
