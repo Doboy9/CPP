@@ -5,36 +5,24 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: dboire <dboire@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/31 18:50:17 by dboire            #+#    #+#             */
-/*   Updated: 2024/09/25 16:06:02 by dboire           ###   ########.fr       */
+/*   Created: 2024/09/24 13:58:46 by dboire            #+#    #+#             */
+/*   Updated: 2024/09/24 14:17:42 by dboire           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <iostream>
-#include <vector>
-#include "easyfind.hpp"
+#include "PmergeMe.hpp"
 
-int main() {
-	std::vector<int> vec;
-	vec.push_back(1);
-	vec.push_back(2);
-	vec.push_back(3);
-	vec.push_back(4);
-	vec.push_back(5);
-
-	try {
-		int found = easyfind(vec, 3);
-		std::cout << "Found: " << found << std::endl;
-	} catch (const std::runtime_error &e) {
-		std::cerr << e.what() << std::endl;
+int main(int ac, char **av)
+{
+	if(ac == 2)
+	{
+		std::string str(av[1]);
+		if(str.find_first_not_of("0123456789 ") == std::string::npos)
+		{
+			PmergeMe pmergeme;
+			pmergeme.parsing(str);
+			return(0);
+		}
 	}
-
-	try {
-		int found = easyfind(vec, 6);
-		std::cout << "Found: " << found << std::endl;
-	} catch (const std::runtime_error &e) {
-		std::cerr << e.what() << std::endl;
-	}
-
-	return 0;
+		std::cout << "Error" << std::endl;
 }
