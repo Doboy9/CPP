@@ -6,14 +6,14 @@
 #    By: dboire <dboire@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/08/31 18:34:22 by dboire            #+#    #+#              #
-#    Updated: 2024/09/25 16:09:21 by dboire           ###   ########.fr        #
+#    Updated: 2024/09/28 10:11:28 by dboire           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = Span
 
 SRC =	main.cpp \
-		span.cpp
+		Span.cpp
 
 CXX = c++
 
