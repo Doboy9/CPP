@@ -6,16 +6,16 @@
 /*   By: dboire <dboire@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/02 14:49:29 by dboire            #+#    #+#             */
-/*   Updated: 2024/09/25 16:04:20 by dboire           ###   ########.fr       */
+/*   Updated: 2024/09/29 14:18:38 by dboire           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Scalar.hpp"
 
-ScalarConverter::ScalarConverter(){};
 ScalarConverter::~ScalarConverter(){};
-ScalarConverter::ScalarConverter(const ScalarConverter&){};
-ScalarConverter &ScalarConverter::operator=(const ScalarConverter&){return *this;}
+ScalarConverter::ScalarConverter(){};
+ScalarConverter::ScalarConverter(const ScalarConverter& ){};
+ScalarConverter &ScalarConverter::operator=(const ScalarConverter& ){return *this;}
 
 void ScalarConverter::convert(const std::string &arg) 
 {
@@ -23,16 +23,17 @@ void ScalarConverter::convert(const std::string &arg)
 	{
 		std::cout << "char: impossible" << std::endl;
 		std::cout << "int: impossible" << std::endl;
-		std::cout << "float: " << arg << "f" << std::endl << "double: " << arg << std::endl;
+		if(arg == "-inff" || arg == "+inff")
+			std::cout << "float: " << arg << std::endl;
+		else
+			std::cout << "float: " << arg << "f" << std::endl;
+		std::cout << "double: " << arg << std::endl;
 		return ;
 	}
-	int start = 0;
-	if(arg[0] == '-')
-		start = 1;
-	int i = start;
+	int i = 0;
 	int j = 0;
 	int k = 0;
-	if(std::isdigit(arg[start]) && arg.length() != 1)
+	if(std::isdigit(arg[0]) && arg.length() != 1)
 	{
 		while(arg[i])
 		{
@@ -48,6 +49,7 @@ void ScalarConverter::convert(const std::string &arg)
 			i++;
 		}
 	}
+
 	if(!std::isdigit(arg[0]) && arg.length() == 1) // Is a char
 	{
 		char cchar;
@@ -70,7 +72,7 @@ void ScalarConverter::convert(const std::string &arg)
 		<< "double: " << dnum << std::endl;
 		return ;
 	}
-	if(std::isdigit(arg[start]) && arg.find('.') == std::string::npos && arg.find_first_not_of("0123456789-") == std::string::npos)
+	if(std::isdigit(arg[0]) && arg.find('.') == std::string::npos && arg.find_first_not_of("0123456789") == std::string::npos)
 	{
 		char *end;
 		char cchar;
@@ -82,17 +84,17 @@ void ScalarConverter::convert(const std::string &arg)
 		i = static_cast<int>(dnum);
 		cchar = static_cast<char>(dnum);
 		fnum = static_cast<float>(dnum);
-		if (dnum < std::numeric_limits<char>::min() || dnum > std::numeric_limits<char>::max() || !std::isprint(cchar))
-			std::cout << "char: Non displayable" << std::endl;
-		else
+		if (std::isprint(cchar))
 			std::cout << "char: " << cchar << std::endl;
-		std::cout << std::fixed << std::setprecision(5);
+		else
+			std::cout << "char: Non displayable" << std::endl;
+		std::cout << std::fixed << std::setprecision(1);
 		std::cout << "int: " << i << std::endl 
 		<< "float: " << fnum << "f" << std::endl
 		<< "double: " << dnum << std::endl;
 		return ;
 	}
-	if(std::isdigit(arg[start]) && arg.find('.') != std::string::npos && arg[arg.length() - 1] == 'f' && arg.find_first_not_of("0123456789f.-") == std::string::npos) // Is a float
+	if(std::isdigit(arg[0]) && arg.find('.') != std::string::npos && arg[arg.length() - 1] == 'f' && arg.find_first_not_of("0123456789f.") == std::string::npos) // Is a float
 	{
 		char *end;
 		char cchar;
@@ -104,17 +106,17 @@ void ScalarConverter::convert(const std::string &arg)
 		i = static_cast<int>(fnum);
 		dnum = static_cast<double>(fnum);
 		cchar = static_cast<char>(dnum);
-		if (dnum < std::numeric_limits<char>::min() || dnum > std::numeric_limits<char>::max() || !std::isprint(cchar))
-			std::cout << "char: Non displayable" << std::endl;
-		else
+		if (std::isprint(cchar))
 			std::cout << "char: " << cchar << std::endl;
-		std::cout << std::fixed << std::setprecision(5);
+		else
+			std::cout << "char: Non displayable" << std::endl;
+		std::cout << std::fixed << std::setprecision(1);
 		std::cout << "int: " << i << std::endl 
 		<< "float: " << fnum << "f" << std::endl
 		<< "double: " << dnum << std::endl;
 		return ;
 	}
-	else if(std::isdigit(arg[start]) && arg.find('.') != std::string::npos && arg.find_first_not_of("0123456789.-") == std::string::npos) // Is a double
+	else if(std::isdigit(arg[0]) && arg.find('.') != std::string::npos && arg.find_first_not_of("0123456789.") == std::string::npos) // Is a double
 	{
 		char *end;
 		char cchar;
@@ -125,11 +127,11 @@ void ScalarConverter::convert(const std::string &arg)
 		i = static_cast<int>(dnum);
 		fnum = static_cast<float>(dnum);
 		cchar = static_cast<char>(dnum);
-		if (dnum < std::numeric_limits<char>::min() || dnum > std::numeric_limits<char>::max() || !std::isprint(cchar))
-			std::cout << "char: Non displayable" << std::endl;
-		else
+		if (std::isprint(cchar))
 			std::cout << "char: " << cchar << std::endl;
-		std::cout << std::fixed << std::setprecision(5);
+		else
+			std::cout << "char: Non displayable" << std::endl;
+		std::cout << std::fixed << std::setprecision(1);
 		std::cout << "int: " << i << std::endl 
 		<< "float: " << fnum << "f" << std::endl
 		<< "double: " << dnum << std::endl;

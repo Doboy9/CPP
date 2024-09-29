@@ -6,7 +6,7 @@
 /*   By: dboire <dboire@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/08 15:24:42 by dboire            #+#    #+#             */
-/*   Updated: 2024/09/06 14:24:57 by dboire           ###   ########.fr       */
+/*   Updated: 2024/09/29 14:13:08 by dboire           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,4 +34,8 @@ int main(void)
 
 	identify(*base3);
 	identify(base3);
+	
+	delete base1;
+	delete base2;
+	delete base3;
 }
