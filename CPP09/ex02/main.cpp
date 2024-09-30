@@ -6,7 +6,7 @@
 /*   By: dboire <dboire@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/24 13:58:46 by dboire            #+#    #+#             */
-/*   Updated: 2024/09/24 14:17:42 by dboire           ###   ########.fr       */
+/*   Updated: 2024/09/26 16:52:53 by dboire           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,23 @@
 
 int main(int ac, char **av)
 {
-	if(ac == 2)
+	if(ac >= 2)
 	{
-		std::string str(av[1]);
-		if(str.find_first_not_of("0123456789 ") == std::string::npos)
+		std::string str;
+		for(int i = 1; i < ac; ++i)
 		{
-			PmergeMe pmergeme;
-			pmergeme.parsing(str);
-			return(0);
+			str += av[i];
+			if(i < ac - 1)
+				str += " ";
 		}
+		if(str.find_first_not_of("0123456789 ") != std::string::npos)
+		{
+			std::cout << "Error" << std::endl;
+			return(1);
+		}
+		PmergeMe pmergeme;
+		pmergeme.parsing(str);
+		return(0);
 	}
 		std::cout << "Error" << std::endl;
 }
