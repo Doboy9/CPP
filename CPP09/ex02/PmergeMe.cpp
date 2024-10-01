@@ -6,7 +6,7 @@
 /*   By: dboire <dboire@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/24 13:53:21 by dboire            #+#    #+#             */
-/*   Updated: 2024/09/30 14:11:08 by dboire           ###   ########.fr       */
+/*   Updated: 2024/10/01 17:11:11 by dboire           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ PmergeMe::PmergeMe(){};
 PmergeMe::~PmergeMe()
 {
 	// MinMax* current = head;
-	// while (current != NULL)
+	// while (current != 0)
 	// {
 	// 	MinMax* next = current->next;
 	// 	delete current;
@@ -24,10 +24,19 @@ PmergeMe::~PmergeMe()
 	// }
 }
 
+template <typename Container>
+void PmergeMe::printContainer(const Container& container) {
+    for (typename Container::const_iterator it = container.begin(); it != container.end(); ++it) {
+        std::cout << *it << " ";
+    }
+    std::cout << std::endl;
+}
+
 void PmergeMe::parsing(std::string str)
 {
 	std::istringstream iss(str);
-	std::vector<int> vec_tmp;
+	std::vector<int> vec;
+	std::deque<int> deq;
 	double number;
 
 	while(iss >> number)
@@ -37,92 +46,134 @@ void PmergeMe::parsing(std::string str)
 			std::cout << "Error" << std::endl;
 			return ;
 		}
-		vec_tmp.push_back(static_cast<int>(number));
+		deq.push_back(static_cast<int>(number));
+		vec.push_back(static_cast<int>(number));
 	}
-	std::cout << "Vector contents: ";
-	for (std::vector<int>::const_iterator it = vec_tmp.begin(); it != vec_tmp.end(); ++it) {
-		std::cout << *it << " ";
-	}
-	std::cout << std::endl;
-	exec();
+	exec(vec);
 }
 
-void PmergeMe::execdeq()
+template<typename Container>
+void PmergeMe::exec(Container& container)
 {
-	MinMax* current = NULL;
-	MinMax* prev = NULL;
+	(void)container;
+	Container smaller;
 
-	for(size_t i = 0; i < deq.size(); i += 2)
-	{
-		MinMax* node = new MinMax();
-		node->min = deq[i];
-		
-		if (i + 1 < deq.size())
-			node->max = deq[i + 1];
-		else
-			node->max = NULL;
-		
-		node->next = NULL;
-		node->prev = prev;
-		
-		if (prev != NULL)
-			prev->next = node;
-		else
-			head = node;
-		
-		prev = node;
-	}
-	recursive_exec(head);
-}
+	MinMax* head = 0;
+    MinMax* tail = 0;
+    for (typename Container::iterator it = container.begin(); it != container.end(); ++it) {
+        MinMax* newNode = new MinMax;
+        newNode->min = *it;
+        newNode->max = 0;
+        newNode->next = 0;
+        if (!head) {
+            head = newNode;
+            tail = newNode;
+        } else {
+            tail->next = newNode;
+            tail = newNode;
+        }
+    }
 
-void PmergeMe::execvec()
-{
-	for(size_t i = 0; i < vec.size(); i += 2)
-	{
-		MinMax* node = new MinMax();
-		node->min = deq[i];
+    MinMax* current = head;
+    while (current) {
+        smaller.push_back(current->min);
+        current = current->next;
+    }
 
-		if (i + 1 < vec.size())
-			node->max = deq[i + 1];
-		else
-			node->max = NULL;
+    std::cout << "Smaller elements: ";
+    printContainer(smaller);
 
-		node->next = NULL;
-		node->prev = prev;
-		
-		if (prev != NULL)
-			prev->next = node;
-		else
-			head = node;
-
-		prev = node;
-	}
+	if(smaller.size() > 1)
+		mergeInsertionSort(smaller);
 	
-	recursive_exec(head);
+    std::cout << "Sorted elements: ";
+    printContainer(smaller);
 }
 
-void PmergeMe::recursive_exec(MinMax* head)
+template <typename Container>
+void PmergeMe::mergeInsertionSort(Container& container)
 {
-	if(!head)
-		return ;
+    if (container.size() <= 10) {
+        insertionSort(container);
+        return;
+    }
 
-	MinMax* current = head;
+    typename Container::iterator middle = container.begin() + container.size() / 2;
+    Container left(container.begin(), middle);
+    Container right(middle, container.end());
 
-	while(current)
-	{
-		if(current->max != NULL)
-		{
-			if(current->min > current->max)
-				std::swap(current->min, current->max);
+    mergeInsertionSort(left);
+    mergeInsertionSort(right);
 
-			larger.push_back(current->max);
-			smaller.push_back(current->min);
-		}
-		else
-			smaller.push_back(current->min);
-		
-		current = current->next;
-	}
-	recursive_exec(larger)
+    merge(left, right, container);
+}
 
+template <typename Container>
+void PmergeMe::merge(Container& left, Container& right, Container& result)
+{
+    typename Container::iterator itLeft = left.begin();
+    typename Container::iterator itRight = right.begin();
+    typename Container::iterator itResult = result.begin();
+
+    while (itLeft != left.end() && itRight != right.end()) {
+        if (*itLeft <= *itRight) {
+            *itResult = *itLeft;
+            ++itLeft;
+        } else {
+            *itResult = *itRight;
+            ++itRight;
+        }
+        ++itResult;
+    }
+
+    while (itLeft != left.end()) {
+        *itResult = *itLeft;
+        ++itLeft;
+        ++itResult;
+    }
+
+    while (itRight != right.end()) {
+        *itResult = *itRight;
+        ++itRight;
+        ++itResult;
+    }
+}
+
+template <typename Container>
+Container PmergeMe::generateJacobsthalSequence(int size, Container &container)
+{
+	(void)container;
+    Container jacobsthal;
+    int j0 = 0, j1 = 1;
+    jacobsthal.push_back(j0);
+    if (size > 1) {
+        jacobsthal.push_back(j1);
+    }
+    while (true) {
+        int jn = j1 + 2 * j0;
+        if (jn >= size) break;
+        jacobsthal.push_back(jn);
+        j0 = j1;
+        j1 = jn;
+    }
+    return jacobsthal;
+}
+
+template <typename Container>
+void PmergeMe::insertionSort(Container& container)
+{
+    Container jacobsthal = generateJacobsthalSequence(container.size(), container);
+
+    for (typename Container::iterator gapIt = jacobsthal.begin(); gapIt != jacobsthal.end(); ++gapIt) {
+        int gap = *gapIt;
+        for (typename Container::iterator it = container.begin() + gap; it != container.end(); ++it) {
+            typename Container::iterator jt = it;
+            typename Container::iterator prev = it - gap;
+            while (jt >= container.begin() + gap && *jt < *prev) {
+                std::swap(*jt, *prev);
+                jt -= gap;
+                prev -= gap;
+            }
+        }
+    }
 }
