@@ -6,7 +6,7 @@
 /*   By: dboire <dboire@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/14 14:03:49 by dboire            #+#    #+#             */
-/*   Updated: 2024/09/14 14:03:49 by dboire           ###   ########.fr       */
+/*   Updated: 2024/10/20 15:23:46 by dboire           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ private:
 	int mappingdata(std::ifstream &data);
 
 	int splitdata(const std::string &line, std::string &date, double &value);
-	int splitinput(const std::string &line, std::string &date, double &value);
+	void splitinput(const std::string &line, std::string &date, double &value);
 };
 
 

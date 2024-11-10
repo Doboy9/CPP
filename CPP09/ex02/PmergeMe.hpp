@@ -6,7 +6,7 @@
 /*   By: dboire <dboire@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/24 13:53:23 by dboire            #+#    #+#             */
-/*   Updated: 2024/10/01 17:10:47 by dboire           ###   ########.fr       */
+/*   Updated: 2024/10/19 17:06:10 by dboire           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@
 #include <sstream>
 #include <limits>
 #include <algorithm>
+#include <ctime>
+#include <typeinfo>
 
 struct MinMax
 {
@@ -57,6 +59,8 @@ private:
 public:
 	PmergeMe();
 	~PmergeMe();
+	PmergeMe(const PmergeMe& other);
+	PmergeMe& operator=(const PmergeMe &src);
 	void parsing(std::string str);
 };
 

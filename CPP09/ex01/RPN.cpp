@@ -6,7 +6,7 @@
 /*   By: dboire <dboire@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/20 11:10:14 by dboire            #+#    #+#             */
-/*   Updated: 2024/09/20 11:10:14 by dboire           ###   ########.fr       */
+/*   Updated: 2024/10/20 17:58:19 by dboire           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,17 @@
 
 RPN::RPN(){};
 RPN::~RPN(){};
+
+RPN::RPN(const RPN& other) : _number_list(other._number_list), _operator_list(other._operator_list) {};
+
+RPN& RPN::operator=(const RPN &src) 
+{
+	if (this != &src) {
+		_number_list = src._number_list;
+		_operator_list = src._operator_list;
+	}
+	return *this;
+}
 
 void RPN::parsing(std::string av)
 {
@@ -37,41 +48,45 @@ void RPN::parsing(std::string av)
 
 void RPN::exec()
 {
-	std::list<int>::iterator num_it = _number_list.begin();
+	std::list<int>::reverse_iterator num_it = _number_list.rbegin();
     int total = *num_it;
     ++num_it;
 
 	std::list<char>::iterator op_it = _operator_list.begin();
-	while (num_it != _number_list.end() && op_it != _operator_list.end())
+	while (num_it != _number_list.rend() && op_it != _operator_list.end())
 	{
 		int number = *num_it;
-        char op = *op_it;
+		char op = *op_it;
 
-        switch (op)
-        {
-            case '+':
-                total += number;
-                break;
-            case '-':
-                total -= number;
-                break;
-            case '*':
-                total *= number;
-                break;
-            case '/':
-                if (number == 0)
-                {
-                    std::cout << "Error: Division by zero" << std::endl;
-                    return;
-                }
-                total /= number;
-                break;
-            default:
-                std::cout << "Error: Invalid operator '" << op << "'" << std::endl;
-                return;
-        }
-        ++num_it;
-        ++op_it;
+		switch (op)
+		{
+			case '+':
+				// std::cout << number << " + " << total << " = " << (total + number) << std::endl;
+				total = number + total;
+				break;
+			case '-':
+				// std::cout << number << " - " << total << " = " << (total + number) << std::endl;
+				total = number - total;
+				break;
+			case '*':
+				// std::cout << number << " * " << total << " = " << (total + number) << std::endl;
+				total = number * total;
+				break;
+			case '/':
+				if (number == 0)
+				{
+					std::cout << "Error: Division by zero" << std::endl;
+					return;
+				}
+				// std::cout << number << " / " << total << " = " << (total + number) << std::endl;
+				total = number / total;
+				break;
+			default:
+				std::cout << "Error: Invalid operator '" << op << "'" << std::endl;
+				return;
+		}
+		++num_it;
+		++op_it;
 	}
 	std::cout << total << std::endl;
 }
