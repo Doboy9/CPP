@@ -6,18 +6,20 @@
 /*   By: dboire <dboire@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/24 13:53:21 by dboire            #+#    #+#             */
-/*   Updated: 2024/10/19 17:22:36 by dboire           ###   ########.fr       */
+/*   Updated: 2024/11/10 18:23:40 by dboire           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "PmergeMe.hpp"
 
-PmergeMe::PmergeMe(){};
-PmergeMe::~PmergeMe(){};
+PmergeMe::PmergeMe() {};
+PmergeMe::~PmergeMe() {};
 
 template <typename Container>
-void PmergeMe::printContainer(const Container& container) {
-	for (typename Container::const_iterator it = container.begin(); it != container.end(); ++it) {
+void PmergeMe::printContainer(const Container &container)
+{
+	for (typename Container::const_iterator it = container.begin(); it != container.end(); ++it)
+	{
 		std::cout << *it << " ";
 	}
 	std::cout << std::endl;
@@ -30,165 +32,219 @@ void PmergeMe::parsing(std::string str)
 	std::deque<int> deq;
 	double number;
 
-	while(iss >> number)
+	while (iss >> number)
 	{
-		if(number > std::numeric_limits<int>::max() || number < std::numeric_limits<int>::min())
+		if (number > std::numeric_limits<int>::max() || number < std::numeric_limits<int>::min())
 		{
 			std::cout << "Error" << std::endl;
-			return ;
+			return;
 		}
 		vec.push_back(static_cast<int>(number));
 		deq.push_back(static_cast<int>(number));
 	}
-	exec(vec);
-	exec(deq);
+	mergeInsertionSort(vec);
+	printContainer(vec);
+	mergeInsertionSort(deq);
+	printContainer(deq);
 }
 
-template<typename Container>
-void PmergeMe::exec(Container& container)
+void PmergeMe::mergeInsertionSort(std::vector<int> &arr)
 {
-	Container smaller;
-
-	MinMax* head = 0;
-	MinMax* tail = 0;
-	for (typename Container::iterator it = container.begin(); it != container.end(); ++it)
-	{
-		MinMax* newNode = new MinMax;
-		newNode->min = *it;
-		newNode->max = 0;
-		newNode->next = 0;
-		if (!head)
-		{
-			head = newNode;
-			tail = newNode;
-		}
-		else
-		{
-			tail->next = newNode;
-			tail = newNode;
-		}
-	}
-
-	MinMax* current = head;
-	while (current)
-	{
-		smaller.push_back(current->min);
-		current = current->next;
-	}
-	
-	// std::cout << "Before: ";
-	// printContainer(smaller);
-	
-	
-	clock_t start = clock();
-	
-	if(smaller.size() > 1)
-		mergeInsertionSort(smaller);
-	
-	clock_t end = clock();
-	double duration = static_cast<double>(end - start) / CLOCKS_PER_SEC * 1e3; // Convert to microseconds
-	
-	// std::cout << "After: ";
-	// printContainer(smaller);
-	std::string typeName = typeid(container).name();
-	if(typeName.find("vector") != std::string::npos)
-		std::cout << "Time to process a range of " << smaller.size() << " elements with std::vector : " << duration << " us" << std::endl;
-	else if(typeName.find("deque") != std::string::npos)
-		std::cout << "Time to process a range of " << smaller.size() << " elements with std::deque : " << duration << " us" << std::endl;
-}
-
-template <typename Container>
-void PmergeMe::mergeInsertionSort(Container& container)
-{
-	if (container.size() <= 10)
-	{
-		insertionSort(container);
+	if (arr.size() <= 1)
 		return;
-	}
 
-	typename Container::iterator middle = container.begin() + container.size() / 2;
-	Container left(container.begin(), middle);
-	Container right(middle, container.end());
+	std::vector<int> mainGroup;
+	std::vector<int> largerGroup;
+	int lastElement;
 
-	mergeInsertionSort(left);
-	mergeInsertionSort(right);
+	if (arr.size() % 2 != 0)
+		lastElement = arr[arr.size() - 1];
 
-	merge(left, right, container);
-}
+	size_t limit;
+	if (arr.size() % 2 != 0)
+		limit = arr.size() - 1;
+	else
+		limit = arr.size();
 
-template <typename Container>
-void PmergeMe::merge(Container& left, Container& right, Container& result)
-{
-	typename Container::iterator itLeft = left.begin();
-	typename Container::iterator itRight = right.begin();
-	typename Container::iterator itResult = result.begin();
-
-	while (itLeft != left.end() && itRight != right.end())
+	for (size_t i = 0; i < limit; i += 2)
 	{
-		if (*itLeft <= *itRight) {
-			*itResult = *itLeft;
-			++itLeft;
-		} else {
-			*itResult = *itRight;
-			++itRight;
-		}
-		++itResult;
-	}
+		int min = arr[i];
+		int max = arr[i + 1];
 
-	while (itLeft != left.end())
-	{
-		*itResult = *itLeft;
-		++itLeft;
-		++itResult;
-	}
-
-	while (itRight != right.end())
-	{
-		*itResult = *itRight;
-		++itRight;
-		++itResult;
-	}
-}
-
-template <typename Container>
-Container PmergeMe::generateJacobsthalSequence(int size, Container &container)
-{
-	(void)container;
-	Container jacobsthal;
-	int j0 = 0, j1 = 1;
-	jacobsthal.push_back(j0);
-	if (size > 1)
-		jacobsthal.push_back(j1);
-	while (true)
-	{
-		int jn = j1 + 2 * j0; // next Jacobsthal number
-		if (jn >= size) 
-			break; // exits the loop if the new number exceeds the specified size. (My container size)
-		jacobsthal.push_back(jn); // adds the number to the container
-		j0 = j1;
-		j1 = jn;
-	}
-	return jacobsthal;
-}
-
-template <typename Container>
-void PmergeMe::insertionSort(Container& container)
-{
-	Container jacobsthal = generateJacobsthalSequence(container.size(), container);
-
-	for (typename Container::iterator gapIt = jacobsthal.begin(); gapIt != jacobsthal.end(); ++gapIt)
-	{
-		int gap = *gapIt;
-		for (typename Container::iterator it = container.begin() + gap; it != container.end(); ++it)
+		if (min > max)
 		{
-			typename Container::iterator jt = it;
-			typename Container::iterator prev = it - gap;
-			while (jt >= container.begin() + gap && *jt < *prev)
+			int temp = min;
+			min = max;
+			max = temp;
+		}
+		mainGroup.push_back(min);
+		largerGroup.push_back(max);
+	}
+
+	if (largerGroup.size() > 1)
+		mergeInsertionSort(largerGroup);
+
+	std::vector<int> result;
+	result.push_back(mainGroup[0]);
+
+	size_t jacobsthal = 1;
+	size_t prevJacob = 1;
+
+	for (size_t i = 0; i < largerGroup.size(); ++i)
+	{
+		int current = largerGroup[i];
+		size_t left = 0;
+		size_t right = result.size();
+
+		while (left < right)
+		{
+			size_t mid = left + (right - left) / 2;
+			if (result[mid] <= current)
+				left = mid + 1;
+			else
+				right = mid;
+		}
+		result.insert(result.begin() + left, current);
+
+		if (i + 1 < mainGroup.size())
+		{
+			current = mainGroup[i + 1];
+			left = 0;
+			right = result.size();
+			while (left < right)
 			{
-				std::swap(*jt, *prev);
-				jt -= gap;
-				prev -= gap;
+				size_t mid = left + (right - left) / 2;
+				if (result[mid] <= current)
+					left = mid + 1;
+				else
+					right = mid;
 			}
+			result.insert(result.begin() + left, current);
+		}
+
+		if (i + 2 == jacobsthal)
+		{
+			size_t temp = jacobsthal;
+			jacobsthal = jacobsthal + 2 * prevJacob;
+			prevJacob = temp;
 		}
 	}
+
+	if (arr.size() % 2 != 0)
+	{
+		size_t left = 0;
+		size_t right = result.size();
+
+		while (left < right)
+		{
+			size_t mid = left + (right - left) / 2;
+			if (result[mid] <= lastElement)
+				left = mid + 1;
+			else
+				right = mid;
+		}
+		result.insert(result.begin() + left, lastElement);
+	}
+
+	arr = result;
+}
+void PmergeMe::mergeInsertionSort(std::deque<int> &arr)
+{
+	if (arr.size() <= 1)
+		return;
+
+	std::deque<int> mainGroup;
+	std::deque<int> largerGroup;
+	int lastElement;
+
+	if (arr.size() % 2 != 0)
+		lastElement = arr[arr.size() - 1];
+
+	size_t limit;
+	if (arr.size() % 2 != 0)
+		limit = arr.size() - 1;
+	else
+		limit = arr.size();
+
+	for (size_t i = 0; i < limit; i += 2)
+	{
+		int min = arr[i];
+		int max = arr[i + 1];
+
+		if (min > max)
+		{
+			int temp = min;
+			min = max;
+			max = temp;
+		}
+		mainGroup.push_back(min);
+		largerGroup.push_back(max);
+	}
+
+	if (largerGroup.size() > 1)
+		mergeInsertionSort(largerGroup);
+
+	std::deque<int> result;
+	result.push_back(mainGroup[0]);
+
+	size_t jacobsthal = 1;
+	size_t prevJacob = 1;
+
+	for (size_t i = 0; i < largerGroup.size(); ++i)
+	{
+		int current = largerGroup[i];
+		size_t left = 0;
+		size_t right = result.size();
+
+		while (left < right)
+		{
+			size_t mid = left + (right - left) / 2;
+			if (result[mid] <= current)
+				left = mid + 1;
+			else
+				right = mid;
+		}
+		result.insert(result.begin() + left, current);
+
+		if (i + 1 < mainGroup.size())
+		{
+			current = mainGroup[i + 1];
+			left = 0;
+			right = result.size();
+			while (left < right)
+			{
+				size_t mid = left + (right - left) / 2;
+				if (result[mid] <= current)
+					left = mid + 1;
+				else
+					right = mid;
+			}
+			result.insert(result.begin() + left, current);
+		}
+
+		if (i + 2 == jacobsthal)
+		{
+			size_t temp = jacobsthal;
+			jacobsthal = jacobsthal + 2 * prevJacob;
+			prevJacob = temp;
+		}
+	}
+
+	if (arr.size() % 2 != 0)
+	{
+		size_t left = 0;
+		size_t right = result.size();
+
+		while (left < right)
+		{
+			size_t mid = left + (right - left) / 2;
+			if (result[mid] <= lastElement)
+				left = mid + 1;
+			else
+				right = mid;
+		}
+		result.insert(result.begin() + left, lastElement);
+	}
+
+	arr = result;
 }
