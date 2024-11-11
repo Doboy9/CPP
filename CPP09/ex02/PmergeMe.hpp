@@ -6,7 +6,7 @@
 /*   By: dboire <dboire@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/24 13:53:23 by dboire            #+#    #+#             */
-/*   Updated: 2024/11/10 18:17:39 by dboire           ###   ########.fr       */
+/*   Updated: 2024/11/11 13:17:35 by dboire           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,13 +41,12 @@ private:
 
 	std::deque<int> deq;
 	std::vector<int> vec;
-	MinMax *head;
+	PmergeMe(const PmergeMe &other);
+	PmergeMe &operator=(const PmergeMe &src);
 
 public:
 	PmergeMe();
 	~PmergeMe();
-	PmergeMe(const PmergeMe &other);
-	PmergeMe &operator=(const PmergeMe &src);
 	void parsing(std::string str);
 };
 

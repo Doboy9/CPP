@@ -6,7 +6,7 @@
 /*   By: dboire <dboire@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/24 13:53:21 by dboire            #+#    #+#             */
-/*   Updated: 2024/11/10 18:23:40 by dboire           ###   ########.fr       */
+/*   Updated: 2024/11/11 13:51:44 by dboire           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,17 @@
 
 PmergeMe::PmergeMe() {};
 PmergeMe::~PmergeMe() {};
+
+PmergeMe::PmergeMe(const PmergeMe &other)
+{
+	(void)other;
+}
+
+PmergeMe &PmergeMe::operator=(const PmergeMe &src)
+{
+	(void)src;
+	return *this;
+}
 
 template <typename Container>
 void PmergeMe::printContainer(const Container &container)
@@ -42,9 +53,25 @@ void PmergeMe::parsing(std::string str)
 		vec.push_back(static_cast<int>(number));
 		deq.push_back(static_cast<int>(number));
 	}
-	mergeInsertionSort(vec);
+
+	std::cout << "Before: ";
 	printContainer(vec);
+
+	// Measure time for vector
+	clock_t start = clock();
+	mergeInsertionSort(vec);
+	clock_t end = clock();
+	double elapsed = static_cast<double>(end - start) / CLOCKS_PER_SEC * 1000000;
+	std::cout << "Time to process a range of " << vec.size() << " elements with std::vector: " << elapsed << " us" << std::endl;
+
+	// Measure time for deque
+	start = clock();
 	mergeInsertionSort(deq);
+	end = clock();
+	elapsed = static_cast<double>(end - start) / CLOCKS_PER_SEC * 1000000;
+	std::cout << "Time to process a range of " << deq.size() << " elements with std::deque: " << elapsed << " us" << std::endl;
+
+	std::cout << "After: ";
 	printContainer(deq);
 }
 
@@ -148,6 +175,7 @@ void PmergeMe::mergeInsertionSort(std::vector<int> &arr)
 
 	arr = result;
 }
+
 void PmergeMe::mergeInsertionSort(std::deque<int> &arr)
 {
 	if (arr.size() <= 1)

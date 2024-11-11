@@ -6,87 +6,104 @@
 /*   By: dboire <dboire@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/20 11:10:14 by dboire            #+#    #+#             */
-/*   Updated: 2024/10/20 17:58:19 by dboire           ###   ########.fr       */
+/*   Updated: 2024/11/11 13:45:00 by dboire           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "RPN.hpp"
 
-RPN::RPN(){};
-RPN::~RPN(){};
+RPN::RPN() {};
+RPN::~RPN() {};
 
-RPN::RPN(const RPN& other) : _number_list(other._number_list), _operator_list(other._operator_list) {};
+RPN::RPN(const RPN &other) : _number_list(other._number_list), _operator_list(other._operator_list) {};
 
-RPN& RPN::operator=(const RPN &src) 
+RPN &RPN::operator=(const RPN &src)
 {
-	if (this != &src) {
+	if (this != &src)
+	{
 		_number_list = src._number_list;
 		_operator_list = src._operator_list;
 	}
 	return *this;
 }
 
-void RPN::parsing(std::string av)
+void RPN::parsing(const std::string &av)
 {
-	for(std::string::size_type i = 0; i < av.size(); i += 2)
+	std::string token;
+	for (std::string::size_type i = 0; i < av.length(); ++i)
 	{
-		if(std::isdigit(av[i]) && av[i + 1] == ' ')
-			_number_list.push_back((av[i] - '0'));
-		else if (std::string("/*-+").find(av[i]) != std::string::npos)
-			_operator_list.push_back(av[i]);
+		if (av[i] == ' ')
+			continue;
+
+		token = av[i];
+		if (std::isdigit(av[i]) || std::string("+-*/").find(av[i]) != std::string::npos)
+			_tokens.push_back(token);
 		else
 		{
-		 	std::cout << "Error" << std::endl;
-			return ;
+			std::cout << "Error" << std::endl;
+			return;
 		}
 	}
-	if(_number_list.size() - _operator_list.size() != 1)
-		std::cout << "Error" << std::endl;
-	else
-		exec();
+	exec();
 }
 
 void RPN::exec()
 {
-	std::list<int>::reverse_iterator num_it = _number_list.rbegin();
-    int total = *num_it;
-    ++num_it;
+	std::list<int> stack;
+	std::list<std::string>::iterator it;
 
-	std::list<char>::iterator op_it = _operator_list.begin();
-	while (num_it != _number_list.rend() && op_it != _operator_list.end())
+	for (it = _tokens.begin(); it != _tokens.end(); ++it)
 	{
-		int number = *num_it;
-		char op = *op_it;
-
-		switch (op)
+		if (isdigit((*it)[0]))
 		{
-			case '+':
-				// std::cout << number << " + " << total << " = " << (total + number) << std::endl;
-				total = number + total;
-				break;
-			case '-':
-				// std::cout << number << " - " << total << " = " << (total + number) << std::endl;
-				total = number - total;
-				break;
-			case '*':
-				// std::cout << number << " * " << total << " = " << (total + number) << std::endl;
-				total = number * total;
-				break;
-			case '/':
-				if (number == 0)
-				{
-					std::cout << "Error: Division by zero" << std::endl;
-					return;
-				}
-				// std::cout << number << " / " << total << " = " << (total + number) << std::endl;
-				total = number / total;
-				break;
-			default:
-				std::cout << "Error: Invalid operator '" << op << "'" << std::endl;
-				return;
+			std::istringstream iss(*it);
+			int value;
+			iss >> value;
+			stack.push_back(value);
+			continue;
 		}
-		++num_it;
-		++op_it;
+
+		if (stack.size() < 2)
+		{
+			std::cout << "Error" << std::endl;
+			return;
+		}
+
+		int b = stack.back();
+		stack.pop_back();
+		int a = stack.back();
+		stack.pop_back();
+
+		switch ((*it)[0])
+		{
+		case '+':
+			stack.push_back(a + b);
+			break;
+		case '-':
+			stack.push_back(a - b);
+			break;
+		case '*':
+			stack.push_back(a * b);
+			break;
+		case '/':
+			if (b == 0)
+			{
+				std::cout << "Error" << std::endl;
+				return;
+			}
+			stack.push_back(a / b);
+			break;
+		default:
+			std::cout << "Error" << std::endl;
+			return;
+		}
 	}
-	std::cout << total << std::endl;
+
+	if (stack.size() != 1)
+	{
+		std::cout << "Error" << std::endl;
+		return;
+	}
+
+	std::cout << stack.back() << std::endl;
 }
